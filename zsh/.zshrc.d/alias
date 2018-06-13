@@ -1,0 +1,48 @@
+############alias perso###################
+#set default pager & editor
+export PAGER="less -r"
+export EDITOR='vim'
+
+#set shortcut directory
+alias diskstation='cd /mnt/diskstation'
+alias media='cd /mnt/diskstation/media'
+alias mediatemp='cd /mnt/diskstation/media/download'
+alias incomplete='cd /mnt/diskstation/media/download/incomplete && ls'
+alias serie='cd /mnt/diskstation/media/serie'
+alias film='cd /mnt/diskstation/media/film'
+
+
+#set ssh shortcut
+alias diskstation-admin='ssh admin@diskstation -p 1020'
+alias diskstation-root='ssh root@diskstation -p 1020'
+
+#set command alias
+alias nano='nano -c'
+alias rarret='sudo systemctl poweroff'
+alias arret='systemctl poweroff'
+alias yaourtp='yaourt --pager --color'
+alias du='du -h'
+alias df='df -h'
+alias rr='rm -r'
+alias rrf='rm -rf'
+#set commande filebot 
+alias trieserie='filebot --format "/mnt/diskstation/media/serie/{n}/Saison {s}/{e.pad(2)}-{t}/{s.pad(2)}x{e.pad(2)}-{t}" --db thetvdb -non-strict --lang fr  -rename -no-xattr'
+alias triefilm='filebot --format "/mnt/diskstation/media/film/{n} ({y})/{n}" --db themoviedb --lang fr -rename -non-strict -no-xattr' 
+alias cleaner='filebot -script fn:cleaner .'
+
+#synchro music directory for laptop
+alias update-music-folder='rsync-update /mnt/diskstation/music/ ~/Music/'
+
+#alias cache pacman
+function syncpacmancache (){
+sudo rsync -avzu --progress -h vincent@$1:/var/cache/pacman/pkg/ /var/cache/pacman/pkg/
+
+}
+
+alias pacmanclean='sudo paccache -r &&sudo  paccache -ruk0'
+
+#other alias
+alias meteo='curl wttr.in/mentque-nortbecourt'
+eval $(thefuck --alias)
+alias chaineTV='python ~/Documents/python/chaineTV.py'
+

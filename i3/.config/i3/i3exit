@@ -1,0 +1,39 @@
+
+#!/usr/bin/env bash
+
+lock() {
+    #  killall compton
+    import -window root /tmp/screenshot.png
+    convert /tmp/screenshot.png -blur 0x5 /tmp/screenshotblur.png
+    # convert /tmp/screenshot.png -spread 6 /tmp/screenshotblur.png
+    rm /tmp/screenshot.png
+    i3lock -k -i /tmp/screenshotblur.png
+
+    #  compton -b
+}
+
+case "$1" in
+    lock)
+        lock
+        ;;
+    logout)
+        i3-msg exit
+        ;;
+    suspend)
+        systemctl suspend
+        ;;
+    hibernate)
+        systemctl hibernate
+        ;;
+    reboot)
+        systemctl reboot
+        ;;
+    shutdown)
+        systemctl poweroff
+        ;;
+    *)
+        echo "Usage: $0 [lock|logout|suspend|hibernate|reboot|shutdown]"
+        exit 2
+esac
+
+exit 0

@@ -1,0 +1,11 @@
+#!/bin/bash
+for output in $(xrandr | grep '\Wconnected' | awk '{ print $1 }'); do
+    if [[ $output =~ ^DP-1*$ ]]; then
+            lvds=$output
+    fi
+done
+for output in $(xrandr | grep '\Wconnected' | awk '{ print $1 }'); do
+    if [[ ! $output =~ ^DP-1*$ ]]; then
+        xrandr --output $lvds --primary --auto --left-of $output 
+    fi
+done

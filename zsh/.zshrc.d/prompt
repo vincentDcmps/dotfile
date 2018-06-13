@@ -1,0 +1,14 @@
+#setting prompt
+#call powerline
+#if [ -f `which powerline-daemon` ]; then
+  #powerline-daemon -q
+#. /usr/lib/python3.6/site-packages/powerline/bindings/zsh/powerline.zsh
+#fi
+##set zsh theme et dircolor en fonction de term
+if [ $TERM != "linux" ];  then 
+    source /usr/share/zsh-theme-powerlevel9k/powerlevel9k.zsh-theme
+    eval `dircolors ~/.dircolors/dircolors.256dark`
+else
+    eval `dircolors ~/.dircolors/dircolors.ansi-dark` 
+fi
+zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}

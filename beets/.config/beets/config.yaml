@@ -1,0 +1,39 @@
+
+
+#██████╗ ███████╗███████╗████████╗███████╗
+#██╔══██╗██╔════╝██╔════╝╚══██╔══╝██╔════╝
+#██████╔╝█████╗  █████╗     ██║   ███████╗
+#██╔══██╗██╔══╝  ██╔══╝     ██║   ╚════██║
+#██████╔╝███████╗███████╗   ██║   ███████║
+#╚═════╝ ╚══════╝╚══════╝   ╚═╝   ╚══════╝
+                                         
+
+
+
+directory: /mnt/diskstation/music
+library:  ~/Sync/library.db
+import:
+        move: yes
+        write: yes
+        
+paths:
+        default: $albumartist/$album%aunique{}/$track - $title 
+        albumtype:classical: classical/$album%aunique{}/$track-$artist-$title 
+        albumtype:Soundtrack: soundtracks/$album%aunique{}/$track-$artist-$title 
+        comp: Compilations/$album%aunique{}/$track-$artist-$title
+        genre:classical: classical/$artist-$title
+        genre:Soundtrack: soundtracks/$artist-$title
+
+        singleton: $artist/$title
+      
+
+plugins: fetchart lyrics lastgenre fromfilename chroma
+
+lastgenre:
+        source: track
+
+
+fetchart:
+        auto: yes
+
+
