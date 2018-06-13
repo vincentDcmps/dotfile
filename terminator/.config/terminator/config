@@ -1,0 +1,39 @@
+[global_config]
+  suppress_multiple_term_dialog = True
+  title_inactive_bg_color = "#586e75"
+  title_inactive_fg_color = "#93a1a1"
+  title_transmit_bg_color = "#839496"
+  title_transmit_fg_color = "#eee8d5"
+[keybindings]
+  help = F9
+[layouts]
+  [[default]]
+    [[[child1]]]
+      parent = window0
+      type = Terminal
+    [[[window0]]]
+      parent = ""
+      type = Window
+[plugins]
+[profiles]
+  [[default]]
+    background_color = "#002b36"
+    background_darkness = 0.9
+    background_type = transparent
+    cursor_color = "#eee8d5"
+    font = Source Code Pro for Powerline Medium 10
+    foreground_color = "#eee8d5"
+    login_shell = True
+    palette = "#073642:#d30102:#859900:#b58900:#2c96f9:#d33682:#2aa198:#839496:#586e75:#cb4b16:#859900:#b58900:#268bd2:#d33682:#2aa198:#93a1a1"
+    scrollback_infinite = True
+    scrollbar_position = hidden
+  [[Light]]
+    background_color = "#eee8d5"
+    background_darkness = 0.9
+    background_type = transparent
+    cursor_color = "#002b36"
+    foreground_color = "#002b36"
+    login_shell = True
+    palette = "#073642:#d30102:#859900:#b58900:#6c71c4:#d33682:#2aa198:#839496:#586e75:#cb4b16:#859900:#b58900:#268bd2:#d33682:#2aa198:#93a1a1"
+    scrollback_infinite = True
+    scrollbar_position = hidden
