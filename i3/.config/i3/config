@@ -32,7 +32,7 @@ font xft:Droid Sans Mono 10
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec urxvtc
+bindsym $mod+Return exec termite
 
 # kill focused window
 bindsym $mod+Shift+A kill
@@ -232,7 +232,7 @@ for_window [class="Gnome-calculator" instance="gnome-calculator" title="Calculat
 for_window [class="KeePass"] floating enable
 for_window [class="Docky"] floating enable
 exec --no-startup-id numlockx
-exec --no-startup-id urxvtd -q -o -f
+#exec --no-startup-id urxvtd -q -o -f
 exec --no-startup-id compton -b
 exec --no-startup-id xinput set-prop 13 279 1
 exec --no-startup-id xinput set-prop 13 287 1
