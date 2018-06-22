@@ -234,8 +234,8 @@ for_window [class="Docky"] floating enable
 exec --no-startup-id numlockx
 #exec --no-startup-id urxvtd -q -o -f
 exec --no-startup-id compton -b
-exec --no-startup-id xinput set-prop 13 279 1
-exec --no-startup-id xinput set-prop 13 287 1
+exec --no-startup-id xinput set-prop 13 283 1
+exec --no-startup-id xinput set-prop 13 291 1
 #		Dunst
 exec --no-startup-id dunst -config ~/.config/dunstrc
 #==============================================================================#
