@@ -1,6 +1,6 @@
 #!/bin/sh
 
-updates=$(checkupdates | wc -l)
+updates=$(checkupdates 2>/dev/null | wc -l)
 
 if [ "$updates" -gt 0 ]; then
     echo "# $updates"
