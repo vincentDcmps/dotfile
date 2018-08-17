@@ -44,5 +44,5 @@ alias pacmanclean='sudo paccache -r &&sudo  paccache -ruk0'
 #other alias
 alias meteo='curl wttr.in/mentque-nortbecourt'
 eval $(thefuck --alias)
-alias chaineTV='python ~/Documents/python/chaineTV.py'
+alias chaineTV='python ~/Documents/python/chainetv/chaineTV.py'
 
