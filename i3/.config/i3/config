@@ -231,6 +231,7 @@ for_window [window_type="menu"] floating enable
 for_window [class="Gnome-calculator" instance="gnome-calculator" title="Calculatrice" window_role="gnome-calculator"] floating enable
 for_window [class="KeePass"] floating enable
 for_window [class="Docky"] floating enable
+for_window [title="cave a vin"] floating enable
 exec --no-startup-id numlockx
 #exec --no-startup-id urxvtd -q -o -f
 exec --no-startup-id compton -b
