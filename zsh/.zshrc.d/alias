@@ -50,4 +50,6 @@ alias chaineTV='python ~/Documents/python/chainetv/chaineTV.py'
 if [ -f `which bat` ]; then
    alias cat='bat'
 fi
-
+if [ -f `which tldr` ]; then
+    alias shortman='tldr'
+fi
