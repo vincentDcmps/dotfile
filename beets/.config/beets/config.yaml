@@ -36,4 +36,5 @@ lastgenre:
 fetchart:
         auto: yes
 
-
+chroma:
+        auto: no 
