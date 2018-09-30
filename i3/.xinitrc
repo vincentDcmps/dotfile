@@ -1,4 +1,3 @@
-??? d'ici jusqu'à ???FIN des lignes ont pu être insérées/effacées
 #!/bin/sh
 #
 # ~/.xinitrc
@@ -15,15 +14,11 @@ nvidia-settings --load-config-only &
 eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
 export SSH_AUTH_SOCK
 
-               exec dbus-launch i3 
-#case $1 in
-        #i3)
-                #exec dbus-launch i3 
-                #;;
-        #*)
-                #exec $1
-                #;;
-#esac
+            #   exec dbus-launch i3 
+case $1 in
+        i3  ) exec dbus-launch i3;;
+        *   )  exec $1;;
+esac
 #exec openbox
 # exec gnome-session
 # exec startkde

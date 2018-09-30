@@ -3,7 +3,8 @@ if [ -d "$HOME/.local/bin" ]; then
     fi
 
 if [ -f "/bin/Xorg" ]; then
-    [[ $(tty) == '/dev/tty1' ]] && startx i3
+    [[ $(tty) == '/dev/tty1' ]] && startx ~/.xinitrc i3 
+    [[ $(tty) == '/dev/tty3' ]] && startx ~/.xinitrc awesome
 fi
 if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty2 ]] && [[ -z $XDG_SESSION_TYPE ]]; then
   XDG_SESSION_TYPE=wayland exec dbus-run-session gnome-session
