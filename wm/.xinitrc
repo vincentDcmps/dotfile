@@ -13,7 +13,11 @@ fi
 nvidia-settings --load-config-only &
 eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
 export SSH_AUTH_SOCK
-
+numlockx &
+compton -b &
+#config pad
+xinput set-prop 13 283 1 &
+xinput set-prop 13 291 1 &
             #   exec dbus-launch i3 
 case $1 in
         i3  ) exec dbus-launch i3;;

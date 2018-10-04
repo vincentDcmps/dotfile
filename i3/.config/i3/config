@@ -10,7 +10,7 @@
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 #force_xinerama yes
 ##
-exec --no-startup-id bash ~/.config/i3/autoxrandr &
+exec --no-startup-id bash ~/script/autoxrandr &
 set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
@@ -232,11 +232,7 @@ for_window [class="Gnome-calculator" instance="gnome-calculator" title="Calculat
 for_window [class="KeePass"] floating enable
 for_window [class="Docky"] floating enable
 for_window [title="cave a vin"] floating enable
-exec --no-startup-id numlockx
 #exec --no-startup-id urxvtd -q -o -f
-exec --no-startup-id compton -b
-exec --no-startup-id xinput set-prop 13 283 1
-exec --no-startup-id xinput set-prop 13 291 1
 #		Dunst
 exec --no-startup-id dunst -config ~/.config/dunstrc
 #==============================================================================#

@@ -7,8 +7,5 @@ function run {
    fi
 }
 
-run compton -b
 run /usr/lib/polkit-kde-authentication-agent-1
-run xinput set-prop 13 291 1
-run xinput set-prop 13 283 1
-
+run bash ~/script/autoxrandr
