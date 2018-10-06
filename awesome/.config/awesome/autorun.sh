@@ -8,4 +8,4 @@ function run {
 }
 
 run /usr/lib/polkit-kde-authentication-agent-1
-run bash ~/script/autoxrandr
+run ~/script/autoxrandr
