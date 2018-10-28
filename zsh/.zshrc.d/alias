@@ -11,6 +11,13 @@ alias incomplete='cd /mnt/diskstation/media/download/incomplete && ls'
 alias serie='cd /mnt/diskstation/media/serie'
 alias film='cd /mnt/diskstation/media/film'
 
+#set git alias for conf2
+alias confpush='git -C ~/conf2 push'
+alias confpull='git -C ~/conf2 pull'
+alias confstatus='git -C ~/conf2 status'
+alias confdiff='git -C ~/conf2 diff master'
+alias confcam='git -C ~/conf2 commit -a -m'
+
 
 #set ssh shortcut
 alias diskstation-admin='ssh admin@diskstation -p 1020'
