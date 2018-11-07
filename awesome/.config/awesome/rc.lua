@@ -243,7 +243,7 @@ globalkeys = gears.table.join(
               {description = "view next", group = "tag"}),
     awful.key({ modkey,           }, "Escape", awful.tag.history.restore,
               {description = "go back", group = "tag"}),
-
+    awful.key({ "Shift" }, "Alt_L", function() mykeyboardlayout.next_layout(); end),
     awful.key({ modkey,           }, "j",
         function ()
             awful.client.focus.byidx( 1)
