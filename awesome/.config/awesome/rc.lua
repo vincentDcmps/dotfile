@@ -6,6 +6,7 @@ require("awful.autofocus")
 local wibox = require("wibox")
 -- Theme handling library
 local lain = require("lain")
+local markup = lain.util.markup
 local beautiful = require("beautiful")
 --import xrandr library
 local xrandr = require("xrandr")
@@ -47,7 +48,11 @@ end
 beautiful.init(awful.util.getdir("config") .. "/themes/default/theme.lua")
 beautiful.useless_gap = 5
 -- This is used later as the default terminal and editor to run.
-terminal = "termite"
+
+local terminal = "termite"
+
+awful.util.terminal = terminal
+
 editor = os.getenv("EDITOR") or "vim"
 editor_cmd = terminal .. " -e " .. editor
 
@@ -122,6 +127,65 @@ mykeyboardlayout = awful.widget.keyboardlayout()
 -- Create a textclock widget
 mytextclock = wibox.widget.textclock()
 
+local cpu = lain.widget.cpu({
+    settings = function()
+        widget:set_markup(markup.fontfg(beautiful.font, "#e33a6e", cpu_now.usage .. "% "))
+    end
+})
+
+-- Net
+local netdownicon = wibox.widget.imagebox(beautiful.widget_netdown)
+local netdowninfo = wibox.widget.textbox()
+local netupicon = wibox.widget.imagebox(beautiful.widget_netup)
+local netupinfo = lain.widget.net({
+    settings = function()
+
+        widget:set_markup(markup.fontfg(beautiful.font, "#e54c62", net_now.sent .. " "))
+        netdowninfo:set_markup(markup.fontfg(beautiful.font, "#87af5f", net_now.received .. " "))
+    end
+})
+
+local mpdicon = wibox.widget.imagebox()
+local mpd = lain.widget.mpd({
+    settings = function()
+        mpd_notification_preset = {
+            text = string.format("%s [%s] - %s\n%s", mpd_now.artist,
+                   mpd_now.album, mpd_now.date, mpd_now.title)
+        }
+
+        if mpd_now.state == "play" then
+            artist = mpd_now.artist .. " > "
+            title  = mpd_now.title .. " "
+            mpdicon:set_image(beautiful.widget_note_on)
+        elseif mpd_now.state == "pause" then
+            artist = "mpd "
+            title  = "paused "
+        else
+            artist = ""
+            title  = ""
+            --mpdicon:set_image() -- not working in 4.0
+            mpdicon._private.image = nil
+            mpdicon:emit_signal("widget::redraw_needed")
+            mpdicon:emit_signal("widget::layout_changed")
+        end
+        widget:set_markup(markup.fontfg(beautiful.font, "#e54c62", artist) .. markup.fontfg(beautiful.font, "#b2b2b2", title))
+    end
+})
+
+local baticon = wibox.widget.imagebox(beautiful
+.widget_batt)
+local bat = lain.widget.bat({
+    settings = function()
+        local perc = bat_now.perc ~= "N/A" and bat_now.perc .. "%" or bat_now.perc
+
+        if bat_now.ac_status == 1 then
+            perc = perc .. " plug"
+        end
+
+        widget:set_markup(markup.fontfg(beautiful.font, beautiful.fg_normal, perc .. " "))
+    end
+})
+
 -- Create a wibox for each screen and add it
 local taglist_buttons = gears.table.join(
                     awful.button({ }, 1, function(t) t:view_only() end),
@@ -157,10 +221,12 @@ end
 screen.connect_signal("property::geometry", set_wallpaper)
 
 awful.screen.connect_for_each_screen(function(s)
+    s.quake = lain.util.quake({ app = awful.util.terminal ,
+    argname = "-name %s"})
     -- Wallpaper
     set_wallpaper(s)
 
-    -- Each screen has its own tag table.
+    -- Each screen has its own tag taawful.util.terminable.
     awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9" }, s, awful.layout.layouts[2])
 
 
@@ -188,10 +254,18 @@ awful.screen.connect_for_each_screen(function(s)
             mylauncher,
             s.mytaglist,
             s.mypromptbox,
+            mpdicon,
+            mpd.widget
         },
         nil -- Middle widget
         ,{ -- Right widgets
             layout = wibox.layout.fixed.horizontal,
+            netdownicon,
+            netdowninfo,
+            netupicon,
+            netupinfo.widget,
+            cpuicon,
+            cpu ,
             mykeyboardlayout,
             wibox.widget.systray(),
             mytextclock,
@@ -258,6 +332,9 @@ globalkeys = gears.table.join(
         {description = "go back", group = "client"}),
 
     -- Standard program
+        -- Dropdown application
+        awful.key({ modkey, }, "z", function () awful.screen.focused().quake:toggle() end,
+        {description = "dropdown application", group = "launcher"}),
     awful.key({ modkey,           }, "Return", function () awful.spawn(terminal) end,
               {description = "open a terminal", group = "launcher"}),
     awful.key({ modkey, "Control" }, "r", awesome.restart,
