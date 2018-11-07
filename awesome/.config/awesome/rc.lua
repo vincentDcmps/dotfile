@@ -7,6 +7,8 @@ local wibox = require("wibox")
 -- Theme handling library
 local lain = require("lain")
 local beautiful = require("beautiful")
+--import xrandr library
+local xrandr = require("xrandr")
 -- Notification library
 local naughty = require("naughty")
 local menubar = require("menubar")
@@ -257,6 +259,8 @@ globalkeys = gears.table.join(
         end,
         {description = "focus previous by index", group = "client"}
     ),
+    awful.key({modkey},"o" , function() xrandr.xrandr() end,
+                {description = "xrandr shortcut", group = "awesome"}),
     awful.key({ modkey,           }, "w", function () mymainmenu:show() end,
               {description = "show main menu", group = "awesome"}),
 
