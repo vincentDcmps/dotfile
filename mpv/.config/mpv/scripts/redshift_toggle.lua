@@ -1,10 +1,9 @@
 -- Toggle redshift when viewing videos with mpv
 
-if os.execute("pgrep -x redshift >/dev/null") ~= 0
+if os.execute("pgrep -x redshift >/dev/null") == 0
 then
-   return
+    return
 end
-
 -- Consider that redshift is enabled when starting
 rs_enabled = true
 
