@@ -9,4 +9,5 @@ function run {
 
 run /usr/lib/polkit-kde-authentication-agent-1
 run ~/script/autoxrandr
+run redshift
 run setxkbmap -layout "fr,us"
