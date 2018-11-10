@@ -221,9 +221,8 @@ end
 screen.connect_signal("property::geometry", set_wallpaper)
 
 awful.screen.connect_for_each_screen(function(s)
-    s.quake = lain.util.quake({ app = awful.util.terminal ,
-    argname = "-name %s"})
-    -- Wallpaper
+     s.quake = lain.util.quake({ app = awful.util.terminal })
+     -- Wallpaper
     set_wallpaper(s)
 
     -- Each screen has its own tag taawful.util.terminable.
@@ -333,7 +332,7 @@ globalkeys = gears.table.join(
 
     -- Standard program
         -- Dropdown application
-        awful.key({ modkey, }, "z", function () awful.screen.focused().quake:toggle() end,
+     awful.key({ modkey, }, "z", function () awful.screen.focused().quake:toggle() end,
         {description = "dropdown application", group = "launcher"}),
     awful.key({ modkey,           }, "Return", function () awful.spawn(terminal) end,
               {description = "open a terminal", group = "launcher"}),
