@@ -7,13 +7,14 @@ local xresources = require("beautiful.xresources")
 local dpi = xresources.apply_dpi
 
 local gfs = require("gears.filesystem")
-local themes_path = gfs.get_themes_dir()
+local themes_path =os.getenv("HOME") .. "/.config/awesome/themes/default/" 
+local icon_dir = themes_path .. "icons/"
 
 local theme = {}
 
-theme.font          = "sans 8"
+theme.font          = "Roboto Bold  10"
 
-theme.bg_normal     = "#222222"
+theme.bg_normal     = "#242424"
 theme.bg_focus      = "#535d6c"
 theme.bg_urgent     = "#ff0000"
 theme.bg_minimize   = "#444444"
@@ -32,7 +33,7 @@ theme.border_marked = "#91231c"
 
 
 
-theme.wibar_height = dpi(25)
+theme.wibar_height = dpi(28)
 -- There are other variable sets
 -- overriding the default one when
 -- defined, the sets are:
@@ -119,6 +120,17 @@ theme.layout_cornernw = themes_path.."default/layouts/cornernww.png"
 theme.layout_cornerne = themes_path.."default/layouts/cornernew.png"
 theme.layout_cornersw = themes_path.."default/layouts/cornersww.png"
 theme.layout_cornerse = themes_path.."default/layouts/cornersew.png"
+
+
+
+--icon
+
+theme.cpu_icon = icon_dir.."cpu.png"
+theme.net_up = icon_dir .. "net_up.png"
+theme.net_down = icon_dir .. "net_down.png"
+theme.spr_right = icon_dir .. "spr_right.png"
+
+theme.mpd = icon_dir .. "mpd.png"
 
 -- Generate Awesome icon:
 theme.awesome_icon = theme_assets.awesome_icon(

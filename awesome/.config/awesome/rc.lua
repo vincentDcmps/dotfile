@@ -127,25 +127,66 @@ mykeyboardlayout = awful.widget.keyboardlayout()
 -- Create a textclock widget
 mytextclock = wibox.widget.textclock()
 
+local spr_right = wibox.widget.imagebox(beautiful.spr_right)
+local cpuicon = wibox.widget.imagebox(beautiful.cpu_icon,true)
 local cpu = lain.widget.cpu({
     settings = function()
-        widget:set_markup(markup.fontfg(beautiful.font, "#e33a6e", cpu_now.usage .. "% "))
+        widget:set_markup(markup.fontfg(beautiful.font,beautiful.fg_normal, cpu_now.usage .. "% "))
     end
 })
 
+local mymem = lain.widget.mem({
+      settings = function()
+        widget:set_markup(markup.fontfg(beautiful.font,beautiful.fg_normal, mem_now.perc .. "% "))
+       end
+})
+
 -- Net
-local netdownicon = wibox.widget.imagebox(beautiful.widget_netdown)
+local netdownicon = wibox.widget.imagebox(beautiful.net_down)
 local netdowninfo = wibox.widget.textbox()
-local netupicon = wibox.widget.imagebox(beautiful.widget_netup)
+local netupicon = wibox.widget.imagebox(beautiful.net_up)
 local netupinfo = lain.widget.net({
     settings = function()
-
+        
         widget:set_markup(markup.fontfg(beautiful.font, "#e54c62", net_now.sent .. " "))
         netdowninfo:set_markup(markup.fontfg(beautiful.font, "#87af5f", net_now.received .. " "))
     end
 })
 
-local mpdicon = wibox.widget.imagebox()
+---redshift widget
+local myredshift = wibox.widget{
+    checked      = false,
+    check_color  = "#EB8F8F",
+    border_color = "#EB8F8F",
+    border_width = 1,
+    shape        = gears.shape.square,
+    widget       = wibox.widget.checkbox
+}
+
+local myredshift_text = wibox.widget{
+    align  = "center",
+    widget = wibox.widget.textbox,
+}
+
+local myredshift_stack = wibox.widget{
+    myredshift,
+    myredshift_text,
+    layout = wibox.layout.stack
+}
+
+lain.widget.contrib.redshift:attach(
+    myredshift,
+    function (active)
+        if active then
+            myredshift_text:set_markup(markup(beautiful.bg_normal, "<b>R</b>"))
+        else
+            myredshift_text:set_markup(markup(beautiful.fg_normal, "R"))
+        end
+        myredshift.checked = active
+    end
+)
+
+local mpdicon = wibox.widget.imagebox(beautiful.mpd)
 local mpd = lain.widget.mpd({
     settings = function()
         mpd_notification_preset = {
@@ -252,18 +293,24 @@ awful.screen.connect_for_each_screen(function(s)
             mylauncher,
             s.mytaglist,
             s.mypromptbox,
+            spr_right,
             mpdicon,
             mpd.widget
         },
         nil -- Middle widget
         ,{ -- Right widgets
             layout = wibox.layout.fixed.horizontal,
+            --myredshift_stack,
             netdownicon,
             netdowninfo,
             netupicon,
             netupinfo.widget,
             cpuicon,
             cpu ,
+            mymemicon,
+            mymem,
+            baticon,
+            bat,
             mykeyboardlayout,
             wibox.widget.systray(),
             mytextclock,
@@ -632,3 +679,5 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 --include autorun file
 awful.spawn.with_shell("~/.config/awesome/autorun.sh")
 
+--debug variable:
+--naughty.notify({preset=naughty.config.presets.normal, title="debug", text=beautiful.cpu_icon})
