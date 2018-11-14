@@ -7,8 +7,8 @@ local xresources = require("beautiful.xresources")
 local dpi = xresources.apply_dpi
 
 local gfs = require("gears.filesystem")
-local themes_path =os.getenv("HOME") .. "/.config/awesome/themes/default/" 
-local icon_dir = themes_path .. "icons/"
+local themes_path =os.getenv("HOME") .. "/.config/awesome/themes/" 
+local icon_dir = themes_path .. "/default/icons/"
 
 local theme = {}
 
