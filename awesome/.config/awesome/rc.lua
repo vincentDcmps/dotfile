@@ -226,8 +226,8 @@ local bat = lain.widget.bat({
     settings = function()
         local perc = bat_now.perc ~= "N/A" and bat_now.perc .. "%" or bat_now.perc
 
-        if bat_now.ac_status == 1 then
-            perc = perc .. " plug"
+        if bat_now.status  then
+            perc = perc .. " " .. bat_now.status
         end
 
         widget:set_markup(markup.fontfg(beautiful.font, beautiful.fg_normal, perc .. " "))
@@ -307,7 +307,8 @@ awful.screen.connect_for_each_screen(function(s)
         nil -- Middle widget
         ,{ -- Right widgets
             layout = wibox.layout.fixed.horizontal,
-            --myredshift_stack,
+            myredshift_stack,
+            spr_right,
             netdownicon,
             netdowninfo,
             netupicon,

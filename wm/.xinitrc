@@ -18,7 +18,8 @@ compton -b &
 #config pad
 xinput set-prop 13 289 1 &
 xinput set-prop 13 297 1 &
-            #   exec dbus-launch i3 
+redshift &
+#   exec dbus-launch i3 
 case $1 in
         i3  ) exec dbus-launch i3;;
         *   )  exec $1;;
