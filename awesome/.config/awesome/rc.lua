@@ -13,7 +13,9 @@ local xrandr = require("xrandr")
 -- Notification library
 local naughty = require("naughty")
 local menubar = require("menubar")
-
+--load revelation plugin
+local revelation=require("revelation")
+--load hotkey_popup
 local hotkeys_popup = require("awful.hotkeys_popup").widget
 -- Enable hotkeys help widget for VIM and other apps
 -- when client with a matching name is opened:
@@ -48,6 +50,10 @@ end
 -- Themes define colours, icons, font and wallpapers.
 beautiful.init(awful.util.getdir("config") .. "/themes/default/theme.lua")
 beautiful.useless_gap = 5
+
+-- revelation init
+revelation.init()
+--
 -- This is used later as the default terminal and editor to run.
 
 local terminal = "termite"
@@ -336,6 +342,8 @@ globalkeys = gears.table.join(
         end,{description="toble wibox",group="awesome"}), 
     awful.key({ modkey,           }, "s",      hotkeys_popup.show_help,
               {description="show help", group="awesome"}),
+    awful.key({ modkey,           }, "e",      revelation,
+              {descriotion="revelation shortcut",group="awesome"}),
     awful.key({ modkey,           }, "Left",   awful.tag.viewprev,
               {description = "view previous", group = "tag"}),
     awful.key({ modkey,           }, "Right",  awful.tag.viewnext,
