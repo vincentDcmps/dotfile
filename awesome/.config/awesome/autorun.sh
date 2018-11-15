@@ -10,3 +10,4 @@ function run {
 run /usr/lib/polkit-kde-authentication-agent-1
 run ~/script/autoxrandr
 run setxkbmap -layout "fr,us"
+run KeePassXC
