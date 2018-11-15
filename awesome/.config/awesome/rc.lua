@@ -193,7 +193,7 @@ lain.widget.contrib.redshift:attach(
     end
 )
 
-local mpdicon = wibox.widget.imagebox(beautiful.mpd)
+local mpdicon = wibox.widget.imagebox(beautiful.mpd_icon)
 local mpd = lain.widget.mpd({
     settings = function()
         mpd_notification_preset = {
@@ -228,6 +228,8 @@ local bat = lain.widget.bat({
 
         if bat_now.status  then
             perc = perc .. " " .. bat_now.status
+        else
+           return
         end
 
         widget:set_markup(markup.fontfg(beautiful.font, beautiful.fg_normal, perc .. " "))

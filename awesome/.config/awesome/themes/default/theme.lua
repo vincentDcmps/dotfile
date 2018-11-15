@@ -129,8 +129,7 @@ theme.cpu_icon = icon_dir.."cpu.png"
 theme.net_up = icon_dir .. "net_up.png"
 theme.net_down = icon_dir .. "net_down.png"
 theme.spr_right = icon_dir .. "spr_right.png"
-
-theme.mpd = icon_dir .. "mpd.png"
+theme.mpd_icon = icon_dir .. "mpd.png"
 
 -- Generate Awesome icon:
 theme.awesome_icon = theme_assets.awesome_icon(
