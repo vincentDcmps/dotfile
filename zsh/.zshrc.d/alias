@@ -27,7 +27,6 @@ alias diskstation-root='ssh root@diskstation -p 1020'
 alias nano='nano -c'
 alias rarret='sudo systemctl poweroff'
 alias arret='systemctl poweroff'
-alias yaourtp='yaourt --pager --color'
 alias du='du -h'
 alias df='df -h'
 alias rr='rm -r'
@@ -47,6 +46,7 @@ sudo rsync -avzu --progress -h vincent@$1:/var/cache/pacman/pkg/ /var/cache/pacm
 }
 
 alias pacmanclean='sudo paccache -r &&sudo  paccache -ruk0'
+alias yayupgrade='yay -Sy &&yay -Qu &&yay -Syu'
 
 #other alias
 alias meteo='curl wttr.in/mentque-nortbecourt'
@@ -60,3 +60,7 @@ fi
 if [ -f `which tldr` ]; then
     alias shortman='tldr'
 fi
+
+#add bluetooth alias pour casque
+alias connect_momentum='bluetoothctl power on && bluetoothctl connect 00:1B:66:8E:46:27'
+alias disconnect_momentum='bluetoothctl disconnect 00:1B:66:8E:46:27 && bluetoothctl power off'
