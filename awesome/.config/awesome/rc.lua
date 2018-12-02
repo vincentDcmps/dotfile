@@ -141,7 +141,7 @@ local cpu = lain.widget.cpu({
         widget:set_markup(markup.fontfg(beautiful.font,beautiful.fg_normal, cpu_now.usage .. "% "))
     end
 })
-
+local mymemicon =wibox.widget.imagebox(beautiful.ram_icon)
 local mymem = lain.widget.mem({
       settings = function()
         widget:set_markup(markup.fontfg(beautiful.font,beautiful.fg_normal, mem_now.perc .. "% "))
@@ -204,17 +204,17 @@ local mpd = lain.widget.mpd({
         if mpd_now.state == "play" then
             artist = mpd_now.artist .. " > "
             title  = mpd_now.title .. " "
-            mpdicon:set_image(beautiful.widget_note_on)
+            mpdicon:set_image(beautiful.mpd_icon)
         elseif mpd_now.state == "pause" then
             artist = "mpd "
             title  = "paused "
         else
             artist = ""
             title  = ""
-            --mpdicon:set_image() -- not working in 4.0
+            mpdicon:set_image() -- not working in 4.0
             mpdicon._private.image = nil
-            mpdicon:emit_signal("widget::redraw_needed")
-            mpdicon:emit_signal("widget::layout_changed")
+           mpdicon:emit_signal("widget::redraw_needed")
+           mpdicon:emit_signal("widget::layout_changed")
         end
         widget:set_markup(markup.fontfg(beautiful.font, "#e54c62", artist) .. markup.fontfg(beautiful.font, "#b2b2b2", title))
     end

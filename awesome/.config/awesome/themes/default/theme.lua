@@ -8,7 +8,7 @@ local dpi = xresources.apply_dpi
 
 local gfs = require("gears.filesystem")
 local themes_path =os.getenv("HOME") .. "/.config/awesome/themes/" 
-local icon_dir = themes_path .. "/default/icons/"
+local icon_dir = themes_path .. "default/icons/"
 
 local theme = {}
 
@@ -125,12 +125,12 @@ theme.layout_cornerse = themes_path.."default/layouts/cornersew.png"
 
 --icon
 
-theme.cpu_icon = icon_dir.."cpu.png"
+theme.cpu_icon = icon_dir .. "cpu.png"
 theme.net_up = icon_dir .. "net_up.png"
 theme.net_down = icon_dir .. "net_down.png"
 theme.spr_right = icon_dir .. "spr_right.png"
 theme.mpd_icon = icon_dir .. "mpd.png"
-
+theme.ram_icon = icon_dir .. "ram.png"
 -- Generate Awesome icon:
 theme.awesome_icon = theme_assets.awesome_icon(
     theme.menu_height, theme.bg_focus, theme.fg_focus
