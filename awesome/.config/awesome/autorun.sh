@@ -11,3 +11,4 @@ run /usr/lib/polkit-kde-authentication-agent-1
 run ~/script/autoxrandr
 run setxkbmap -layout "fr,us"
 run keepassxc
+run aarchup
