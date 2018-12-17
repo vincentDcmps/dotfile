@@ -43,10 +43,10 @@ scrollback_lines = 10000
 # and cursor_foreground falls back to the background color.
 #cursor = #dcdccc
 #cursor_foreground = #dcdccc
-foreground = #eee8d5
+foreground = #839496
 foreground_bold = #eee8d5
 # 20% background transparency (requires a compositor)
-background = rgba(0, 43, 54, 0.9)
+background = #002b36
 cursor = #93a1a1
 # colors from color0 to color254 can be set
 color0 = #073642
