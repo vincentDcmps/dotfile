@@ -1,4 +1,4 @@
-SERVICES=("mariadb" "nginx" "php-fpm" "gitea" "tt-rss" "named" "autofs" "rsyncd")
+SERVICES=("mariadb" "nginx" "php-fpm" "gitea" "tt-rss" "named" "autofs" "rsyncd.socket")
 HOST=$(hostname)
 
 echo "device $HOST have reboot curent status of critic service:"
