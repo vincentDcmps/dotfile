@@ -14,10 +14,10 @@ do
     
     if [ $status = "inactive" ]
     then
-        echo -e "${RED}$service is $status${NC}"
+        echo -e "$service is $status"
         echo $(journalctl -u $service --lines=10 -q)
     else
-        echo -e "${GREEN}$service is $status${NC}"
+        echo -e "$service is $status"
     fi
     echo ""
 done
