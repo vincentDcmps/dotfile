@@ -4,6 +4,9 @@ RED='\033[0;31m'
 GREEN='\033[0;32m'
 NC='\033[0m'
 
+#attend 60s pour que les autre service est le temps de démarrer
+sleep 60
+
 echo "device $HOST have reboot curent status of critic service:"
 for service in ${SERVICES[@]}
 do
