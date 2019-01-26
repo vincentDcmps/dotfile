@@ -12,12 +12,12 @@ for service in ${SERVICES[@]}
 do
     status=$(systemctl is-active $service)
     
-    if [ $status = "inactive" ]
+    if [ $status = "active" ]
     then
         echo -e "$service is $status"
-        echo $(journalctl -u $service --lines=10 -q)
     else
         echo -e "$service is $status"
+        echo $(journalctl -u $service --lines=10 -q)
     fi
     echo ""
 done
