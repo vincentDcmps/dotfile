@@ -241,4 +241,4 @@ exec --no-startup-id aarchup            # exec octopi-notifier
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
 exec_always --no-startup-id feh --bg-scale ~/.config/i3/wallpaper.jpg
-exec /usr/lib/polkit-kde-authentication-agent-1
+exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
