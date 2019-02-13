@@ -1,4 +1,4 @@
-SERVICES=("mariadb" "nginx" "php-fpm" "gitea" "tt-rss" "named" "autofs" "rsyncd.socket")
+SERVICES=("named" "mariadb" "nginx" "php-fpm" "gitea" "tt-rss" "named" "autofs" "rsyncd.socket")
 HOST=$(hostname)
 RED='\033[0;31m'
 GREEN='\033[0;32m'
