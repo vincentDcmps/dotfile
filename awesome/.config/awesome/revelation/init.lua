@@ -93,11 +93,11 @@ local revelation = {
     is_excluded = false,
     curr_tag_only = false,
     font = "monospace 20",
-    fg = beautiful.fg_normal or "#DCDCCC",
-    bg = beautiful.bg_normal or "#000000",
-    border_color=beautiful.border_focus or "#DCDCCC",
-    border_width=beautiful.border_width or 2,
-    hintsize = (type(beautiful.xresources) == 'table' and beautiful.xresources.apply_dpi(50) or 60)
+    fg = beautiful.revelation_fg_normal or beautiful.fg_normal or "#DCDCCC",
+    bg = beautiful.revelation_bg_normal or beautiful.bg_normal or "#000000",
+    border_color = beautiful.revelation_border_color or beautiful.border_focus or "#DCDCCC",
+    border_width = beautiful.revelation_border_width or beautiful.border_width or 2,
+    hintsize = (type(beautiful.xresources) == 'table' and beautiful.xresources.apply_dpi(beautiful.revelation_hintsize or 50) or 60)
 }
 
 
