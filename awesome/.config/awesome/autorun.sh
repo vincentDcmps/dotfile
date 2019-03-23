@@ -12,3 +12,4 @@ run ~/script/autoxrandr
 run setxkbmap -layout "fr,us"
 run keepassxc
 run aarchup
+run redshift-gtk

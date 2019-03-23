@@ -160,38 +160,6 @@ local netupinfo = lain.widget.net({
     end
 })
 
----redshift widget
-local myredshift = wibox.widget{
-    checked      = false,
-    check_color  = "#EB8F8F",
-    border_color = "#EB8F8F",
-    border_width = 1,
-    shape        = gears.shape.square,
-    widget       = wibox.widget.checkbox
-}
-
-local myredshift_text = wibox.widget{
-    align  = "center",
-    widget = wibox.widget.textbox,
-}
-
-local myredshift_stack = wibox.widget{
-    myredshift,
-    myredshift_text,
-    layout = wibox.layout.stack
-}
-
-lain.widget.contrib.redshift:attach(
-    myredshift,
-    function (active)
-        if active then
-            myredshift_text:set_markup(markup(beautiful.bg_normal, "<b>R</b>"))
-        else
-            myredshift_text:set_markup(markup(beautiful.fg_normal, "R"))
-        end
-        myredshift.checked = active
-    end
-)
 
 local mpdicon = wibox.widget.imagebox(beautiful.mpd_icon)
 local mpd = lain.widget.mpd({
