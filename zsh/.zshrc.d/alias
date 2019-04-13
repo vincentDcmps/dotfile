@@ -56,7 +56,7 @@ alias chaineTV='python ~/Documents/python/chainetv/chaineTV.py'
 #CLI Improved
 if [ -f `which bat` ]; then
    alias cat='bat'
-   alis catp='bat --style=plain'
+   alias catp='bat --style=plain'
 fi
 if [ -f `which tldr` ]; then
     alias shortman='tldr'
