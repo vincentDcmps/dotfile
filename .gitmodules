@@ -1,6 +1,3 @@
-[submodule "vim/.vim/nerdcommenter"]
-	path = vim/.vim/nerdcommenter
-	url = https://github.com/scrooloose/nerdcommenter
 [submodule "vim/.vim/bundle/nerdcommenter"]
 	path = vim/.vim/bundle/nerdcommenter
 	url = https://github.com/scrooloose/nerdcommenter
