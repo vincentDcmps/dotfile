@@ -11,7 +11,7 @@ set -eu
 USER='dump'
 PASS='wg4KAKkbywiLs8pQ' 
 # Répertoire de stockage des sauvegardes
-DATADIR="/mnt/backup/mysql"
+DATADIR="/diskstation/git/backup/mysql"
 # Répertoire de travail (création/compression)
 DATATMP=$DATADIR
 # Nom du dump
