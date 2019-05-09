@@ -27,7 +27,7 @@ paths:
         singleton: $artist/$title
       
 
-plugins: fetchart lyrics lastgenre fromfilename chroma
+plugins: fetchart lyrics lastgenre fromfilename chroma web
 
 lastgenre:
         source: track
