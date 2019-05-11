@@ -50,7 +50,7 @@ set ruler
 set mouse=a
 "change la couleur"
 "set background=dark
-colorscheme solarized8_dark
+"colorscheme solarized8_dark
 
 "aactiver nerdtree ctrl n
 map <C-n> :NERDTreeToggle<CR>
