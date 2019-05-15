@@ -65,3 +65,6 @@ fi
 #add bluetooth alias pour casque
 alias connect_momentum='bluetoothctl power on && bluetoothctl connect 00:1B:66:8E:46:27'
 alias disconnect_momentum='bluetoothctl disconnect 00:1B:66:8E:46:27 && bluetoothctl power off'
+
+#sudo alias
+alias _='sudo '
