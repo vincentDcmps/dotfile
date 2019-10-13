@@ -565,6 +565,7 @@ awful.rules.rules = {
           },
 
         name = {
+          "Calculatrice",
           "Event Tester",  -- xev.
         },
         role = {
