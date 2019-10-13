@@ -422,8 +422,18 @@ globalkeys = gears.table.join(
     awful.key({ }, "XF86AudioPlay", function () awful.spawn("mpc toggle") end),
     awful.key({ }, "XF86AudioStop", function () awful.spawn("mpc stop") end),
     awful.key({ }, "XF86AudioNext", function () awful.spawn("mpc next") end),
-    awful.key({ }, "XF86AudioPrev", function () awful.spawn("mpc prev") end)
-              
+    awful.key({ }, "XF86AudioPrev", function () awful.spawn("mpc prev") end),
+    --application hotkeys (logitech keyboard g710+)
+    awful.key({  }, "XF86LaunchA", function () awful.spawn(terminal) end,
+              {description = "open a terminal", group = "launcher"}),
+    awful.key({  }, "XF86Launch9", function () awful.spawn("keepassxc") end,
+              {description = "open keepass", group = "launcher"}),
+
+    awful.key({  }, "XF86Launch8", function () awful.spawn("firefox") end,
+              {description = "open a Firefox", group = "launcher"}),
+
+    awful.key({  }, "XF86Launch7", function () awful.spawn("code") end,
+              {description = "open VScode", group = "launcher"})
 )
 
 clientkeys = gears.table.join(
