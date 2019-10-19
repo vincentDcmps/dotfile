@@ -10,7 +10,7 @@ local gfs = require("gears.filesystem")
 local themes_path =os.getenv("HOME") .. "/.config/awesome/themes/" 
 local icon_dir = themes_path .. "default/icons/"
 
-local theme = {}
+local theme = require("themes/colorless/theme")
 
 theme.font          = "Roboto Bold  10"
 
@@ -108,6 +108,8 @@ theme.layout_fairv = themes_path.."default/layouts/fair.svg"
 theme.layout_floating  = themes_path.."default/layouts/floating.svg"
 theme.layout_magnifier = themes_path.."default/layouts/magnifier.svg"
 theme.layout_max = themes_path.."default/layouts/max.svg"
+theme.layout_grid = themes_path.."default/layouts/grid.svg"
+theme.layout_usermap = themes_path.."default/layouts/map.svg"
 theme.layout_fullscreen = themes_path.."default/layouts/fullscreen.svg"
 theme.layout_tilebottom = themes_path.."default/layouts/tilebottom.svg"
 theme.layout_tileleft   = themes_path.."default/layouts/tileleft.svg"
