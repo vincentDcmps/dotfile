@@ -355,7 +355,6 @@ end
 function player:action(args)
 	if not awful.util.table.hasitem(self._actions, args) then return end
 	if not self.wibox then self:init() end
-
 	awful.spawn.with_shell(self.command.action .. args)
 	self:update()
 end

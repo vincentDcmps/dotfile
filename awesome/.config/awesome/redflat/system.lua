@@ -119,17 +119,18 @@ end
 -----------------------------------------------------------------------------------------------------------------------
 function system.net_speed(interface, storage)
 	local up, down = 0, 0
-
+	local state = 0
 	-- Get network info
 	--------------------------------------------------------------------------------
 	for line in io.lines("/proc/net/dev") do
-
+	
 		-- Match wmaster0 as well as rt0 (multiple leading spaces)
 		local name = string.match(line, "^[%s]?[%s]?[%s]?[%s]?([%w]+):")
-
+		
 		-- Calculate speed for given interface
 		------------------------------------------------------------
 		if name == interface then
+			state = 1
 			-- received bytes, first value after the name
 			local recv = tonumber(string.match(line, ":[%s]*([%d]+)"))
 			-- transmited bytes, 7 fields from end of the line
@@ -144,7 +145,7 @@ function system.net_speed(interface, storage)
 				-- net stats are absolute, substract our last reading
 				local interval = now - storage[interface].time
 				if interval <= 0 then interval = 1 end
-
+				
 				down = (recv - storage[interface].recv) / interval
 				up   = (send - storage[interface].send) / interval
 			end
@@ -157,7 +158,7 @@ function system.net_speed(interface, storage)
 	end
 
 	--------------------------------------------------------------------------------
-	return { up, down }
+	return { up, down,state }
 end
 
 -- Get disk speed

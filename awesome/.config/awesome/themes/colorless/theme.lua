@@ -529,14 +529,14 @@ function theme:init()
 		dotcount     = {}, -- redflat dotcount style (see theme.gauge.graph.dots)
 		border_width = 0,  -- floating widget border width
 		geometry     = { height = 40 }, -- floating widget size
-		screen_gap   = 2 * self.useless_gap, -- minimal space from screen edge on floating widget placement
+		screen_gap   =  self.useless_gap, -- minimal space from screen edge on floating widget placement
 		shape        = nil, -- wibox shape
 		color        = { wibox = self.color.wibox, border = self.color.wibox },
 
 		-- function to define floating widget position when shown
 		set_position = function(wibox)
 			local geometry = { x = mouse.screen.workarea.x + mouse.screen.workarea.width,
-			                   y = mouse.screen.workarea.y + mouse.screen.workarea.height }
+			                   y = mouse.screen.workarea.y }
 			wibox:geometry(geometry)
 		end,
 	}

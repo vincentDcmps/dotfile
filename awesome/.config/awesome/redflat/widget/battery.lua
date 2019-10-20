@@ -62,7 +62,6 @@ function battery.new(args, style)
 	--------------------------------------------------------------------------------
 	widg._update = function()
 		local state = args.func(args.arg)
-
 		widg:set_value(state.value)
 		widg:set_alert(state.alert)
 		widg._tp:set_text(state.text)

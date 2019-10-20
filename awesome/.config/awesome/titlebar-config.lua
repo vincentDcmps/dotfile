@@ -24,6 +24,7 @@ local function title_buttons(c)
 			{ }, 1,
 			function()
 				client.focus = c;  c:raise()
+				
 				awful.mouse.client.move(c)
 			end
 		),
@@ -58,7 +59,7 @@ function titlebar:init()
 	local style = {}
 
 	-- titlebar schemes
-	style.base   = redutil.table.merge(redutil.table.check(beautiful, "titlebar.base") or {}, { size = 8 })
+	style.base   = redutil.table.merge(redutil.table.check(beautiful, "titlebar.base") or {}, { size = 9 })
 	style.iconic = redutil.table.merge(style.base, { size = 24 })
 
 	-- titlebar elements styles

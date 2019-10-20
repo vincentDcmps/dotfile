@@ -6,7 +6,8 @@
 local table = table
 local awful = require("awful")
 local redflat = require("redflat")
-
+--import xrandr library
+local xrandr = require("xrandr")
 -- Initialize tables and vars for module
 -----------------------------------------------------------------------------------------------------------------------
 local hotkeys = { mouse = {}, raw = {}, keys = {}, fake = {} }
@@ -125,6 +126,7 @@ function hotkeys:init(args)
 	local appkeys = args.appkeys or {}
 
 	self.mouse.root = (awful.util.table.join(
+		awful.button({ }, 1, function () mainmenu:hide() end),
 		awful.button({ }, 3, function () mainmenu:toggle() end),
 		awful.button({ }, 4, awful.tag.viewnext),
 		awful.button({ }, 5, awful.tag.viewprev)
@@ -204,6 +206,7 @@ function hotkeys:init(args)
 	-- Appswitcher widget
 	------------------------------------------------------------
 	local appswitcher_keys = {
+
 		{
 			{ env.mod }, "a", function() appswitcher:switch() end,
 			{ description = "Select next app", group = "Navigation" }
@@ -252,80 +255,6 @@ function hotkeys:init(args)
 
 	appswitcher:set_keys(appswitcher_keys)
 
-	-- Emacs like key sequences
-	--------------------------------------------------------------------------------
-
-	-- initial key
-	local keyseq = { { env.mod }, "c", {}, {} }
-
-	-- group
-	keyseq[3] = {
-		{ {}, "k", {}, {} }, -- application kill group
-		{ {}, "c", {}, {} }, -- client managment group
-		{ {}, "r", {}, {} }, -- client managment group
-		{ {}, "n", {}, {} }, -- client managment group
-		{ {}, "g", {}, {} }, -- run or rise group
-		{ {}, "f", {}, {} }, -- launch application group
-	}
-
-	-- quick launch key sequence actions
-	for i = 1, 9 do
-		local ik = tostring(i)
-		table.insert(keyseq[3][5][3], {
-			{}, ik, function() qlaunch:run_or_raise(ik) end,
-			{ description = "Run or rise application №" .. ik, group = "Run or Rise", keyset = { ik } }
-		})
-		table.insert(keyseq[3][6][3], {
-			{}, ik, function() qlaunch:run_or_raise(ik, true) end,
-			{ description = "Launch application №".. ik, group = "Quick Launch", keyset = { ik } }
-		})
-	end
-
-	-- application kill sequence actions
-	keyseq[3][1][3] = {
-		{
-			{}, "f", function() if client.focus then client.focus:kill() end end,
-			{ description = "Kill focused client", group = "Kill application", keyset = { "f" } }
-		},
-		{
-			{}, "a", kill_all,
-			{ description = "Kill all clients with current tag", group = "Kill application", keyset = { "a" } }
-		},
-	}
-
-	-- client managment sequence actions
-	keyseq[3][2][3] = {
-		{
-			{}, "p", function () toggle_placement(env) end,
-			{ description = "Switch master/slave window placement", group = "Clients managment", keyset = { "p" } }
-		},
-	}
-
-	keyseq[3][3][3] = {
-		{
-			{}, "f", restore_client,
-			{ description = "Restore minimized client", group = "Clients managment", keyset = { "f" } }
-		},
-		{
-			{}, "a", restore_all,
-			{ description = "Restore all clients with current tag", group = "Clients managment", keyset = { "a" } }
-		},
-	}
-
-	keyseq[3][4][3] = {
-		{
-			{}, "f", function() if client.focus then client.focus.minimized = true end end,
-			{ description = "Minimized focused client", group = "Clients managment", keyset = { "f" } }
-		},
-		{
-			{}, "a", minimize_all,
-			{ description = "Minimized all clients with current tag", group = "Clients managment", keyset = { "a" } }
-		},
-		{
-			{}, "e", minimize_all_except_focused,
-			{ description = "Minimized all clients except focused", group = "Clients managment", keyset = { "e" } }
-		},
-	}
 
 
 	-- Layouts
@@ -354,11 +283,19 @@ function hotkeys:init(args)
 			{ description = "Increase the number of master clients", group = "Layout" }
 		},
 		{
+			{ env.mod, }, "=", function () awful.tag.incnmaster( 1, nil, true) end,
+			{ description = "Increase the number of master clients", group = "Layout" }
+		},
+		{
 			{ env.mod }, "-", function () awful.tag.incnmaster(-1, nil, true) end,
 			{ description = "Decrease the number of master clients", group = "Layout" }
 		},
 		{
 			{ env.mod, "Control" }, "+", function () awful.tag.incncol( 1, nil, true) end,
+			{ description = "Increase the number of columns", group = "Layout" }
+		},
+		{
+			{ env.mod, "Control" }, "=", function () awful.tag.incncol( 1, nil, true) end,
 			{ description = "Increase the number of columns", group = "Layout" }
 		},
 		{
@@ -582,16 +519,15 @@ function hotkeys:init(args)
 	--------------------------------------------------------------------------------
 	self.raw.root = {
 		{
+			{ env.mod }, "b", function () mouse.screen.mywibox.visible = not mouse.screen.mywibox.visible end,{description="togle wibox",group="awesome"}
+		},
+		{
 			{ env.mod }, "F1", function() redtip:show() end,
 			{ description = "[Hold] Show awesome hotkeys helper", group = "Main" }
 		},
 		{
 			{ env.mod, "Control" }, "F1", function() apphelper(appkeys) end,
 			{ description = "[Hold] Show hotkeys helper for application", group = "Main" }
-		},
-		{
-			{ env.mod }, "c", function() redflat.float.keychain:activate(keyseq, "User") end,
-			{ description = "[Hold] User key sequence", group = "Main" }
 		},
 
 		{
@@ -640,6 +576,12 @@ function hotkeys:init(args)
 			{ env.mod }, "Tab", focus_to_previous,
 			{ description = "Go to previos client", group = "Client focus" }
 		},
+		{
+			{ env.mod, "Control" }, "j", function () awful.screen.focus_relative( 1) end,
+			{description = "focus the next screen", group = "screen"}},
+		{
+			{ env.mod, "Control" }, "k", function () awful.screen.focus_relative(-1) end,
+			{description = "focus the previous screen", group = "screen"}},
 
 		{
 			{ env.mod }, "w", function() mainmenu:show() end,
@@ -776,9 +718,31 @@ function hotkeys:init(args)
 		{
 			{ env.mod, "Control" }, "s", function() for s in screen do env.wallpaper(s) end end,
 			{} -- hidden key
-		}
-	}
+		},
+ 		--application hotkeys (logitech keyboard g710+)
+		{
+			{  }, "XF86LaunchA", function () awful.spawn(terminal) end,
+			{description = "open a terminal", group = "launcher"}
+		},
+		{
+			{  }, "XF86Launch9", function () awful.spawn("keepassxc") end,
+			{description = "open keepass", group = "launcher"}
+		},
 
+		{
+			{  }, "XF86Launch8", function () awful.spawn("firefox") end,
+			{description = "open a Firefox", group = "launcher"}
+		},
+
+		{
+			{  }, "XF86Launch7", function () awful.spawn("code") end,
+			{description = "open VScode", group = "launcher"}
+		},
+		
+		{
+			{env.mod,"Shift"},"o" , function() xrandr.xrandr() end,
+		{description = "xrandr shortcut", group = "screen"}}
+		}
 	-- Client keys
 	--------------------------------------------------------------------------------
 	self.raw.client = {
@@ -805,7 +769,11 @@ function hotkeys:init(args)
 		{
 			{ env.mod }, "m", function(c) c.maximized = not c.maximized; c:raise() end,
 			{ description = "Maximize", group = "Client keys" }
-		}
+		},
+		{
+			{ env.mod }, "o",      function (c) c:move_to_screen()               end,
+			{description = "move to screen", group = "client"}
+		},
 	}
 
 	self.keys.root = redflat.util.key.build(self.raw.root)
@@ -856,8 +824,7 @@ function hotkeys:init(args)
 	self.mouse.client = awful.util.table.join(
 		awful.button({}, 1, function (c) client.focus = c; c:raise() end),
 		awful.button({}, 2, awful.mouse.client.move),
-		awful.button({ env.mod }, 3, awful.mouse.client.resize),
-		awful.button({}, 8, function(c) c:kill() end)
+		awful.button({ env.mod }, 3, awful.mouse.client.resize)
 	)
 
 	-- Set root hotkeys

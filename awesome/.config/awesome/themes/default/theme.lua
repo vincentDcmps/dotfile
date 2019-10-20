@@ -10,119 +10,39 @@ local gfs = require("gears.filesystem")
 local themes_path =os.getenv("HOME") .. "/.config/awesome/themes/" 
 local icon_dir = themes_path .. "default/icons/"
 
-local theme = require("themes/colorless/theme")
+local theme = require("themes/colored/theme")
 
+theme.color.main   = "#A30817"
+theme.color.urgent = "#016B84"
+
+
+
+theme:update()
+theme.gauge.audio.blue.dash.plain = true
+theme.gauge.audio.blue.dash.bar.num = 8
+theme.gauge.audio.blue.dash.bar.width = 3
+theme.gauge.audio.blue.dmargin = { 5, 0, 9, 9 }
+theme.gauge.audio.blue.width = 86
+theme.gauge.audio.blue.icon = theme.path .. "/widget/audio.svg"
+theme.widget.tasklist.task = theme.gauge.task.ruby
 theme.font          = "Roboto Bold  10"
 
-theme.bg_normal     = "#242424"
-theme.bg_focus      = "#535d6c"
-theme.bg_urgent     = "#ff0000"
-theme.bg_minimize   = "#444444"
-theme.bg_systray    = theme.bg_normal
+theme.cellnum = { x = 80, y = 43 } -- grid layout property
 
-theme.fg_normal     = "#aaaaaa"
-theme.fg_focus      = "#ffffff"
-theme.fg_urgent     = "#ffffff"
-theme.fg_minimize   = "#ffffff"
-
-theme.useless_gap   = dpi(0)
-theme.border_width  = dpi(1)
-theme.border_normal = "#000000"
-theme.border_focus  = "#535d6c"
-theme.border_marked = "#91231c"
-
-
-
-theme.wibar_height = dpi(28)
--- There are other variable sets
--- overriding the default one when
--- defined, the sets are:
--- taglist_[bg|fg]_[focus|urgent|occupied|empty|volatile]
--- tasklist_[bg|fg]_[focus|urgent]
--- titlebar_[bg|fg]_[normal|focus]
--- tooltip_[font|opacity|fg_color|bg_color|border_width|border_color]
--- mouse_finder_[color|timeout|animate_timeout|radius|factor]
--- prompt_[fg|bg|fg_cursor|bg_cursor|font]
--- hotkeys_[bg|fg|border_width|border_color|shape|opacity|modifiers_fg|label_bg|label_fg|group_margin|font|description_font]
--- Example:
---theme.taglist_bg_focus = "#ff0000"
-
--- Generate taglist squares:
-local taglist_square_size = dpi(4)
-theme.taglist_squares_sel = theme_assets.taglist_squares_sel(
-    taglist_square_size, theme.fg_normal
-)
-theme.taglist_squares_unsel = theme_assets.taglist_squares_unsel(
-    taglist_square_size, theme.fg_normal
-)
-
--- Variables set for theming notifications:
--- notification_font
--- notification_[bg|fg]
--- notification_[width|height|margin]
--- notification_[border_color|border_width|shape|opacity]
-
--- Variables set for theming the menu:
--- menu_[bg|fg]_[normal|focus]
--- menu_[border_color|border_width]
-theme.menu_submenu_icon = themes_path.."default/submenu.png"
-theme.menu_height = dpi(30)
-theme.menu_width  = dpi(100)
-
--- You can add as many variables as
--- you wish and access them by using
--- beautiful.variable in your rc.lua
---theme.bg_widget = "#cc0000"
-
--- Define the image to load
-theme.titlebar_close_button_normal = themes_path.."default/titlebar/close_normal.png"
-theme.titlebar_close_button_focus  = themes_path.."default/titlebar/close_focus.png"
-
-theme.titlebar_minimize_button_normal = themes_path.."default/titlebar/minimize_normal.png"
-theme.titlebar_minimize_button_focus  = themes_path.."default/titlebar/minimize_focus.png"
-
-theme.titlebar_ontop_button_normal_inactive = themes_path.."default/titlebar/ontop_normal_inactive.png"
-theme.titlebar_ontop_button_focus_inactive  = themes_path.."default/titlebar/ontop_focus_inactive.png"
-theme.titlebar_ontop_button_normal_active = themes_path.."default/titlebar/ontop_normal_active.png"
-theme.titlebar_ontop_button_focus_active  = themes_path.."default/titlebar/ontop_focus_active.png"
-
-theme.titlebar_sticky_button_normal_inactive = themes_path.."default/titlebar/sticky_normal_inactive.png"
-theme.titlebar_sticky_button_focus_inactive  = themes_path.."default/titlebar/sticky_focus_inactive.png"
-theme.titlebar_sticky_button_normal_active = themes_path.."default/titlebar/sticky_normal_active.png"
-theme.titlebar_sticky_button_focus_active  = themes_path.."default/titlebar/sticky_focus_active.png"
-
-theme.titlebar_floating_button_normal_inactive = themes_path.."default/titlebar/floating_normal_inactive.png"
-theme.titlebar_floating_button_focus_inactive  = themes_path.."default/titlebar/floating_focus_inactive.png"
-theme.titlebar_floating_button_normal_active = themes_path.."default/titlebar/floating_normal_active.png"
-theme.titlebar_floating_button_focus_active  = themes_path.."default/titlebar/floating_focus_active.png"
-
-theme.titlebar_maximized_button_normal_inactive = themes_path.."default/titlebar/maximized_normal_inactive.png"
-theme.titlebar_maximized_button_focus_inactive  = themes_path.."default/titlebar/maximized_focus_inactive.png"
-theme.titlebar_maximized_button_normal_active = themes_path.."default/titlebar/maximized_normal_active.png"
-theme.titlebar_maximized_button_focus_active  = themes_path.."default/titlebar/maximized_focus_active.png"
-
---theme.wallpaper = themes_path.."default/background.png"
 theme.wallpaper = "~/Images/wallpaper.jpg"
--- You can use your own layout icons like this:
-theme.layout_fairv = themes_path.."default/layouts/fair.svg"
-theme.layout_floating  = themes_path.."default/layouts/floating.svg"
-theme.layout_magnifier = themes_path.."default/layouts/magnifier.svg"
-theme.layout_max = themes_path.."default/layouts/max.svg"
-theme.layout_grid = themes_path.."default/layouts/grid.svg"
-theme.layout_usermap = themes_path.."default/layouts/map.svg"
-theme.layout_fullscreen = themes_path.."default/layouts/fullscreen.svg"
-theme.layout_tilebottom = themes_path.."default/layouts/tilebottom.svg"
-theme.layout_tileleft   = themes_path.."default/layouts/tileleft.svg"
-theme.layout_tile = themes_path.."default/layouts/tile.svg"
-theme.layout_tiletop = themes_path.."default/layouts/tiletop.svg"
-theme.layout_spiral  = themes_path.."default/layouts/spiral.svg"
-theme.layout_dwindle = themes_path.."default/layouts/dwindle.svg"
-theme.layout_cornernw = themes_path.."default/layouts/cornernw.svg"
-theme.layout_cornerne = themes_path.."default/layouts/cornerne.svg"
-theme.layout_cornersw = themes_path.."default/layouts/cornersw.svg"
-theme.layout_cornerse = themes_path.."default/layouts/cornerse.svg"
 
-
+theme.widget.wrapper = {
+	layoutbox   = { 12, 10, 6, 6 },
+	textclock   = { 10, 10, 0, 0 },
+	volume      = { 4, 9, 3, 3 },
+	network     = { 10, 10, 5, 5 },
+	cpuram      = { 10, 10, 5, 5 },
+	keyboard    = { 10, 10, 4, 4 },
+	mail        = { 10, 10, 4, 4 },
+	battery     = { 8, 10, 7, 7 },
+	tray        = { 8, 8, 7, 7 },
+	tasklist    = { 4, 0, 0, 0 }, -- centering tasklist widget
+}
 
 --icon
 
@@ -132,14 +52,7 @@ theme.net_down = icon_dir .. "net_down.png"
 theme.spr_right = icon_dir .. "spr_right.png"
 theme.mpd_icon = icon_dir .. "audio.svg"
 theme.ram_icon = icon_dir .. "ram.png"
--- Generate Awesome icon:
-theme.awesome_icon = theme_assets.awesome_icon(
-    theme.menu_height, theme.bg_focus, theme.fg_focus
-)
 
--- Define the icon theme for application icons. If not set then the icons
--- from /usr/share/icons and /usr/share/icons/hicolor will be used.
-theme.icon_theme = nil
 
 return theme
 

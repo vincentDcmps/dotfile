@@ -53,7 +53,7 @@ function minitray:init(style)
 		bg           = style.color.wibox,
 		border_width = style.border_width,
 		border_color = style.color.border,
-		shape        = style.shape
+		shape        = style.shape,
 	}
 
 	self.wibox = wibox(wargs)
