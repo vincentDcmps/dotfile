@@ -159,7 +159,7 @@ sysmon.buttons.ram = awful.util.table.join(
 )
 -- battery
 local batstate=redflat.system.battery("BAT0")
-if batstate.value ~= nil then
+if batstate[3] ~= "N/A" then
     sysmon.widget.battery = redflat.widget.sysmon(
 	    { func = redflat.system.pformatted.bat(25), arg = "BAT0" },
 	    { timeout = 60, widget = redflat.gauge.icon.single, monitor = { is_vertical = true, icon = sysmon.icon.battery } }
@@ -279,8 +279,6 @@ awful.screen.connect_for_each_screen(function(s)
             spr_right,
             env.wrapper(sysmon.widget.battery, "battery"),
             spr_right,
-            baticon,
-            bat,
             env.wrapper(volume.widget, "volume", volume.buttons),
             spr_right,
             env.wrapper(textclock.widget, "textclock"),
