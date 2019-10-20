@@ -174,7 +174,7 @@ function theme:update()
 	------------------------------------------------------------
 	self.float.top.set_position  = function(wibox)
 		local geometry = { x = mouse.screen.workarea.x + mouse.screen.workarea.width,
-		                   y = mouse.screen.workarea.y + mouse.screen.workarea.height }
+		                   y = mouse.screen.workarea.y  }
 		wibox:geometry(geometry)
 	end
 

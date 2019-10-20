@@ -44,15 +44,6 @@ theme.widget.wrapper = {
 	tasklist    = { 4, 0, 0, 0 }, -- centering tasklist widget
 }
 
---icon
-
-theme.cpu_icon = icon_dir .. "cpu.png"
-theme.net_up = icon_dir .. "net_up.png"
-theme.net_down = icon_dir .. "net_down.png"
-theme.spr_right = icon_dir .. "spr_right.png"
-theme.mpd_icon = icon_dir .. "audio.svg"
-theme.ram_icon = icon_dir .. "ram.png"
-
 
 return theme
 
