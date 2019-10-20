@@ -5,7 +5,7 @@
 -- @copyright 2017 ikselven
 -- @module awful.hotkeys_popup.keys.termite
 ---------------------------------------------------------------------------
-
+require("awful.hotkeys_popup.keys")
 local hotkeys_popup = require("awful.hotkeys_popup.widget")
 
 local termite_rule = { class = "Termite" }
