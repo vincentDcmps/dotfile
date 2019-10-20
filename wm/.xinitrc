@@ -16,8 +16,8 @@ export SSH_AUTH_SOCK
 numlockx &
 compton -b &
 #config pad
-xinput set-prop 13 290 1 &
-xinput set-prop 13 298 1 &
+xinput set-prop 13 312 1 &
+xinput set-prop 13 304 1 &
 #   exec dbus-launch i3 
 case $1 in
         i3  ) exec dbus-launch i3;;
