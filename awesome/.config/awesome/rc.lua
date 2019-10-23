@@ -102,6 +102,7 @@ tray.buttons = awful.util.table.join(
 local volume = {}
 volume.widget = redflat.widget.pulse(nil, { widget = redflat.gauge.audio.blue.new })
 
+
 -- activate player widget
 redflat.float.player:init({ name = env.player })
 
@@ -183,6 +184,7 @@ sysmon.widget.network = redflat.widget.net(
 
 local mpdicon = wibox.widget.imagebox(beautiful.mpd_icon)
 local mpd = lain.widget.mpd({
+    notify = "off",
     settings = function()
         mpd_notification_preset = {
             text = string.format("%s [%s] - %s\n%s", mpd_now.artist,
