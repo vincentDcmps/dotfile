@@ -30,7 +30,7 @@ require("hotkeys_popup.termite")
 require("ercheck-config") -- load file with error handling
 
 env=require("env-config")
-env:init()
+env:init({sloppy_focus=true})
 
 -- This is used later as the default terminal and editor to run.
 awful.util.terminal = env.terminal
@@ -210,20 +210,7 @@ local mpd = lain.widget.mpd({
     end
 })
 
-local baticon = wibox.widget.imagebox(beautiful.widget_batt)
-local bat = lain.widget.bat({
-    settings = function()
-        local perc = bat_now.perc ~= "N/A" and bat_now.perc .. "%" or bat_now.perc
 
-        if bat_now.status  then
-            perc = perc .. " " .. bat_now.status
-        else
-           return
-        end
-
-        widget:set_markup(markup.fontfg(beautiful.font, beautiful.fg_normal, perc .. " "))
-    end
-})
 
 
 

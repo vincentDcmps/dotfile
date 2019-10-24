@@ -721,7 +721,7 @@ function hotkeys:init(args)
 		},
  		--application hotkeys (logitech keyboard g710+)
 		{
-			{  }, "XF86LaunchA", function () awful.spawn(terminal) end,
+			{  }, "XF86LaunchA", function () awful.spawn(env.terminal) end,
 			{description = "open a terminal", group = "launcher"}
 		},
 		{
