@@ -29,7 +29,7 @@ local redutil = require("redflat.util")
 -- Initialize tables and vars for module
 -----------------------------------------------------------------------------------------------------------------------
 local pulse = { widgets = {}, mt = {} }
-pulse.startup_time = 4
+pulse.startup_time = 10
 
 -- Generate default theme vars
 -----------------------------------------------------------------------------------------------------------------------
