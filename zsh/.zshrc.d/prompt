@@ -15,7 +15,6 @@ else
     eval `dircolors ~/.dircolors/dircolors.ansi-dark` 
 fi
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
-#if [ -z "$SSH_AUTH_SOCK" ] ; then
-  #eval `ssh-agent -s`
-  #ssh-add
-#fi
+if [ -z "$SSH_AUTH_SOCK" ] ; then
+  eval `ssh-agent -s`
+fi
