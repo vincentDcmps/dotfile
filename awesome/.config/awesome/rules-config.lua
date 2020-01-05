@@ -32,8 +32,9 @@ rules.floating_any = {
 		"veromix",
 		"xtightvncviewer",
 		"keepassxc", 
+		"KeePassXC",
 	},
-	name={         "Calculatrice","Event Tester",},
+	name={"Calculatrice","Event Tester",},
 	role = { "AlarmWindow", "pop-up", },
 	type = { "dialog" }
 }
