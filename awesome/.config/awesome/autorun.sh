@@ -14,3 +14,4 @@ run keepassxc
 run aarchup
 run redshift-gtk
 run start-pulseaudio-x11
+run albert

@@ -14,7 +14,7 @@ nvidia-settings --load-config-only &
 eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
 export SSH_AUTH_SOCK
 numlockx &
-compton -b &
+picom -b &
 #config pad
 xinput set-prop 13 312 1 &
 xinput set-prop 13 304 1 &
