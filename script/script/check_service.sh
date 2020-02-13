@@ -1,4 +1,4 @@
-SERVICES=("syncthing@vincent" "named" "mariadb" "nginx" "php-fpm" "gitea" "tt-rss" "named" "gunicorn-chainetv.socket" "gunicorn-supysonic" "rsyncd.service" "fail2ban" "supysonic-daemon" "home-assistant" "radicale")
+SERVICES=("syncthing@vincent" "named" "mariadb" "nginx" "php-fpm" "gitea" "tt-rss" "gunicorn-chainetv.socket" "gunicorn-supysonic" "rsyncd.service" "fail2ban" "supysonic-daemon" "home-assistant" "radicale")
 HOST=$(hostname)
 RED='\033[0;31m'
 GREEN='\033[0;32m'
