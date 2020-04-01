@@ -15,8 +15,8 @@ export SSH_AUTH_SOCK
 numlockx &
 picom -b &
 #config pad
-xinput set-prop 13 323 1 &
-xinput set-prop 13 307 1 &
+xinput set-prop 13 325 1 &
+xinput set-prop 13 309 1 &
 #   exec dbus-launch i3 
 case $1 in
         i3  ) exec dbus-launch i3;;
