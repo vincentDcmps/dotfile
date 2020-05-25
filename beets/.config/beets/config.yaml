@@ -37,4 +37,6 @@ fetchart:
         auto: yes
 
 chroma:
-        auto: no 
+       auto: yes
+
+threaded: yes
