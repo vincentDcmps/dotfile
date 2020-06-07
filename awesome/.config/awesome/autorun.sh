@@ -6,7 +6,7 @@ function run {
                   $@&
    fi
 }
-run numlock
+run numlockx
 run picom -b
 #config pad
 run xinput set-prop 13 325 1 
