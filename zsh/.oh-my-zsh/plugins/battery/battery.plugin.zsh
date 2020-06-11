@@ -11,21 +11,22 @@
 # Modified to add support for FreeBSD     #
 ###########################################
 
-if [[ "$OSTYPE" = darwin* ]]; then
-
-  function battery_is_charging() {
-    ioreg -rc AppleSmartBattery | command grep -q '^.*"ExternalConnected"\ =\ Yes'
-  }
+if [[ "$OSTYPE" = darwin* ]] ; then
 
   function battery_pct() {
-    local battery_status="$(ioreg -rc AppleSmartBattery)"
-    local -i capacity=$(sed -n -e '/MaxCapacity/s/^.*"MaxCapacity"\ =\ //p' <<< $battery_status)
-    local -i current=$(sed -n -e '/CurrentCapacity/s/^.*"CurrentCapacity"\ =\ //p' <<< $battery_status)
-    echo $(( current * 100 / capacity ))
+    local smart_battery_status="$(ioreg -rc "AppleSmartBattery")"
+    typeset -F maxcapacity=$(echo $smart_battery_status | grep '^.*"MaxCapacity"\ =\ ' | sed -e 's/^.*"MaxCapacity"\ =\ //')
+    typeset -F currentcapacity=$(echo $smart_battery_status | grep '^.*"CurrentCapacity"\ =\ ' | sed -e 's/^.*CurrentCapacity"\ =\ //')
+    integer i=$(((currentcapacity/maxcapacity) * 100))
+    echo $i
+  }
+
+  function plugged_in() {
+    [ $(ioreg -rc AppleSmartBattery | grep -c '^.*"ExternalConnected"\ =\ Yes') -eq 1 ]
   }
 
   function battery_pct_remaining() {
-    if battery_is_charging; then
+    if plugged_in ; then
       echo "External Power"
     else
       battery_pct
@@ -34,9 +35,9 @@ if [[ "$OSTYPE" = darwin* ]]; then
 
   function battery_time_remaining() {
     local smart_battery_status="$(ioreg -rc "AppleSmartBattery")"
-    if [[ $(echo $smart_battery_status | command grep -c '^.*"ExternalConnected"\ =\ No') -eq 1 ]]; then
-      timeremaining=$(echo $smart_battery_status | command grep '^.*"AvgTimeToEmpty"\ =\ ' | sed -e 's/^.*"AvgTimeToEmpty"\ =\ //')
-      if [ $timeremaining -gt 720 ]; then
+    if [[ $(echo $smart_battery_status | grep -c '^.*"ExternalConnected"\ =\ No') -eq 1 ]] ; then
+      timeremaining=$(echo $smart_battery_status | grep '^.*"AvgTimeToEmpty"\ =\ ' | sed -e 's/^.*"AvgTimeToEmpty"\ =\ //')
+      if [ $timeremaining -gt 720 ] ; then
         echo "::"
       else
         echo "~$((timeremaining / 60)):$((timeremaining % 60))"
@@ -47,36 +48,39 @@ if [[ "$OSTYPE" = darwin* ]]; then
   }
 
   function battery_pct_prompt () {
-    local battery_pct color
-    if ioreg -rc AppleSmartBattery | command grep -q '^.*"ExternalConnected"\ =\ No'; then
-      battery_pct=$(battery_pct_remaining)
-      if [[ $battery_pct -gt 50 ]]; then
+    if [[ $(ioreg -rc AppleSmartBattery | grep -c '^.*"ExternalConnected"\ =\ No') -eq 1 ]] ; then
+      b=$(battery_pct_remaining)
+      if [ $b -gt 50 ] ; then
         color='green'
-      elif [[ $battery_pct -gt 20 ]]; then
+      elif [ $b -gt 20 ] ; then
         color='yellow'
       else
         color='red'
       fi
-      echo "%{$fg[$color]%}[${battery_pct}%%]%{$reset_color%}"
+      echo "%{$fg[$color]%}[$(battery_pct_remaining)%%]%{$reset_color%}"
     else
       echo "∞"
     fi
   }
 
-elif [[ "$OSTYPE" = freebsd* ]]; then
+  function battery_is_charging() {
+    [[ $(ioreg -rc "AppleSmartBattery"| grep '^.*"IsCharging"\ =\ ' | sed -e 's/^.*"IsCharging"\ =\ //') == "Yes" ]]
+  }
+
+elif [[ "$OSTYPE" = freebsd*  ]] ; then
 
   function battery_is_charging() {
     [[ $(sysctl -n hw.acpi.battery.state) -eq 2 ]]
   }
 
   function battery_pct() {
-    if (( $+commands[sysctl] )); then
-      sysctl -n hw.acpi.battery.life
+    if (( $+commands[sysctl] )) ; then
+      echo "$(sysctl -n hw.acpi.battery.life)"
     fi
   }
 
   function battery_pct_remaining() {
-    if ! battery_is_charging; then
+    if [ ! $(battery_is_charging) ] ; then
       battery_pct
     else
       echo "External Power"
@@ -84,46 +88,45 @@ elif [[ "$OSTYPE" = freebsd* ]]; then
   }
 
   function battery_time_remaining() {
-    local remaining_time
     remaining_time=$(sysctl -n hw.acpi.battery.time)
-    if [[ $remaining_time -ge 0 ]]; then
-      ((hour = $remaining_time / 60 ))
-      ((minute = $remaining_time % 60 ))
-      printf %02d:%02d $hour $minute
+    if [[ $remaining_time -ge 0 ]] ; then
+      # calculation from https://www.unix.com/shell-programming-and-scripting/23695-convert-minutes-hours-minutes-seconds.html
+      ((hour=$remaining_time/60))
+      ((minute=$remaining_time-$hour*60))
+      echo $hour:$minute
     fi
   }
 
   function battery_pct_prompt() {
-    local battery_pct color
-    battery_pct=$(battery_pct_remaining)
-    if battery_is_charging; then
-      echo "∞"
-    else
-      if [[ $battery_pct -gt 50 ]]; then
+    b=$(battery_pct_remaining)
+    if [ ! $(battery_is_charging) ] ; then
+      if [ $b -gt 50 ] ; then
         color='green'
-      elif [[ $battery_pct -gt 20 ]]; then
+      elif [ $b -gt 20 ] ; then
         color='yellow'
       else
         color='red'
       fi
-      echo "%{$fg[$color]%}${battery_pct}%%%{$reset_color%}"
+      echo "%{$fg[$color]%}$(battery_pct_remaining)%%%{$reset_color%}"
+    else
+      echo "∞"
     fi
   }
 
-elif [[ "$OSTYPE" = linux*  ]]; then
+elif [[ "$OSTYPE" = linux*  ]] ; then
 
   function battery_is_charging() {
-    ! acpi 2>/dev/null | command grep -v "rate information unavailable" | command grep -q '^Battery.*Discharging'
+    ! [[ $(acpi 2>/dev/null | grep -c '^Battery.*Discharging') -gt 0 ]]
   }
 
   function battery_pct() {
-    if (( $+commands[acpi] )); then
-      acpi 2>/dev/null | command grep -v "rate information unavailable" | command grep -E '^Battery.*(Full|(Disc|C)harging)' | cut -f2 -d ',' | tr -cd '[:digit:]'
+    if (( $+commands[acpi] )) ; then
+      echo "$(acpi 2>/dev/null | cut -f2 -d ',' | tr -cd '[:digit:]')"
     fi
   }
 
   function battery_pct_remaining() {
-    if ! battery_is_charging; then
+    if [ ! $(battery_is_charging) ] ; then
       battery_pct
     else
       echo "External Power"
@@ -131,81 +134,76 @@ elif [[ "$OSTYPE" = linux*  ]]; then
   }
 
   function battery_time_remaining() {
-    if ! battery_is_charging; then
-      acpi 2>/dev/null | command grep -v "rate information unavailable" | cut -f3 -d ','
+    if [[ $(acpi 2>/dev/null | grep -c '^Battery.*Discharging') -gt 0 ]] ; then
+      echo $(acpi 2>/dev/null | cut -f3 -d ',')
     fi
   }
 
   function battery_pct_prompt() {
-    local battery_pct color
-    battery_pct=$(battery_pct_remaining)
-    if battery_is_charging; then
-      echo "∞"
-    else
-      if [[ $battery_pct -gt 50 ]]; then
+    b=$(battery_pct_remaining) 
+    if [[ $(acpi 2>/dev/null | grep -c '^Battery.*Discharging') -gt 0 ]] ; then
+      if [ $b -gt 50 ] ; then
         color='green'
-      elif [[ $battery_pct -gt 20 ]]; then
+      elif [ $b -gt 20 ] ; then
         color='yellow'
       else
         color='red'
       fi
-      echo "%{$fg[$color]%}${battery_pct}%%%{$reset_color%}"
+      echo "%{$fg[$color]%}$(battery_pct_remaining)%%%{$reset_color%}"
+    else
+      echo "∞"
     fi
   }
 
 else
   # Empty functions so we don't cause errors in prompts
-  function battery_is_charging { false }
-  function battery_pct \
-    battery_pct_remaining \
-    battery_time_remaining \
-    battery_pct_prompt { }
+  function battery_pct_remaining() {
+  }
+
+  function battery_time_remaining() {
+  }
+
+  function battery_pct_prompt() {
+  }
 fi
 
 function battery_level_gauge() {
-  local gauge_slots=${BATTERY_GAUGE_SLOTS:-10}
-  local green_threshold=${BATTERY_GREEN_THRESHOLD:-$(( gauge_slots * 0.6 ))}
-  local yellow_threshold=${BATTERY_YELLOW_THRESHOLD:-$(( gauge_slots * 0.4 ))}
-  local color_green=${BATTERY_COLOR_GREEN:-%F{green}}
-  local color_yellow=${BATTERY_COLOR_YELLOW:-%F{yellow}}
-  local color_red=${BATTERY_COLOR_RED:-%F{red}}
-  local color_reset=${BATTERY_COLOR_RESET:-%{%f%k%b%}}
-  local battery_prefix=${BATTERY_GAUGE_PREFIX:-'['}
-  local battery_suffix=${BATTERY_GAUGE_SUFFIX:-']'}
-  local filled_symbol=${BATTERY_GAUGE_FILLED_SYMBOL:-'▶'}
-  local empty_symbol=${BATTERY_GAUGE_EMPTY_SYMBOL:-'▷'}
-  local charging_color=${BATTERY_CHARGING_COLOR:-$color_yellow}
-  local charging_symbol=${BATTERY_CHARGING_SYMBOL:-'⚡'}
+  local gauge_slots=${BATTERY_GAUGE_SLOTS:-10};
+  local green_threshold=${BATTERY_GREEN_THRESHOLD:-6};
+  local yellow_threshold=${BATTERY_YELLOW_THRESHOLD:-4};
+  local color_green=${BATTERY_COLOR_GREEN:-%F{green}};
+  local color_yellow=${BATTERY_COLOR_YELLOW:-%F{yellow}};
+  local color_red=${BATTERY_COLOR_RED:-%F{red}};
+  local color_reset=${BATTERY_COLOR_RESET:-%{%f%k%b%}};
+  local battery_prefix=${BATTERY_GAUGE_PREFIX:-'['};
+  local battery_suffix=${BATTERY_GAUGE_SUFFIX:-']'};
+  local filled_symbol=${BATTERY_GAUGE_FILLED_SYMBOL:-'▶'};
+  local empty_symbol=${BATTERY_GAUGE_EMPTY_SYMBOL:-'▷'};
+  local charging_color=${BATTERY_CHARGING_COLOR:-$color_yellow};
+  local charging_symbol=${BATTERY_CHARGING_SYMBOL:-'⚡'};
 
-  local battery_remaining_percentage=$(battery_pct)
-  local filled empty gauge_color
+  local battery_remaining_percentage=$(battery_pct);
 
   if [[ $battery_remaining_percentage =~ [0-9]+ ]]; then
-    filled=$(( ($battery_remaining_percentage * $gauge_slots) / 100 ))
-    empty=$(( $gauge_slots - $filled ))
+    local filled=$(((( $battery_remaining_percentage + $gauge_slots - 1) / $gauge_slots)));
+    local empty=$(($gauge_slots - $filled));
 
-    if [[ $filled -gt $green_threshold ]]; then
-      gauge_color=$color_green
-    elif [[ $filled -gt $yellow_threshold ]]; then
-      gauge_color=$color_yellow
-    else
-      gauge_color=$color_red
+    if [[ $filled -gt $green_threshold ]]; then local gauge_color=$color_green;
+    elif [[ $filled -gt $yellow_threshold ]]; then local gauge_color=$color_yellow;
+    else local gauge_color=$color_red;
     fi
   else
-    filled=$gauge_slots
-    empty=0
-    filled_symbol=${BATTERY_UNKNOWN_SYMBOL:-'.'}
+    local filled=$gauge_slots;
+    local empty=0;
+    filled_symbol=${BATTERY_UNKNOWN_SYMBOL:-'.'};
   fi
 
-  local charging=' '
-  battery_is_charging && charging=$charging_symbol
+  local charging=' ' && battery_is_charging && charging=$charging_symbol;
 
-  # Charging status and prefix
-  print -n ${charging_color}${charging}${color_reset}${battery_prefix}${gauge_color}
-  # Filled slots
-  [[ $filled -gt 0 ]] && printf ${filled_symbol//\%/\%\%}'%.0s' {1..$filled}
-  # Empty slots
+  printf ${charging_color//\%/\%\%}$charging${color_reset//\%/\%\%}${battery_prefix//\%/\%\%}${gauge_color//\%/\%\%}
+  printf ${filled_symbol//\%/\%\%}'%.0s' {1..$filled}
   [[ $filled -lt $gauge_slots ]] && printf ${empty_symbol//\%/\%\%}'%.0s' {1..$empty}
-  # Suffix
-  print -n ${color_reset}${battery_suffix}${color_reset}
+  printf ${color_reset//\%/\%\%}${battery_suffix//\%/\%\%}${color_reset//\%/\%\%}
 }
+
+

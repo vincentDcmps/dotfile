@@ -16,8 +16,7 @@ plugins=(... lighthouse)
   file in your directory with the URL to the individual project.
 
   Example:
-
-  ```console
+  ```zsh
   $ cat .lighthouse-url
   https://rails.lighthouseapp.com/projects/8994
 
@@ -25,5 +24,3 @@ plugins=(... lighthouse)
   Opening ticket #23
   # The browser goes to https://rails.lighthouseapp.com/projects/8994/tickets/23
   ```
-
-See a demo: http://screencast.com/t/ZDgwNDUwNT

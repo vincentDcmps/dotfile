@@ -1,14 +1,10 @@
-# dnf plugin
+## Description
 
-This plugin makes `dnf` usage easier by adding aliases for the most common commands.
+This plugin makes `dnf` usage easier by adding aliases for the most
+common commands.
 
-`dnf` is the new package manager for RPM-based distributions, which replaces `yum`.
-
-To use it, add `dnf` to the plugins array in your zshrc file:
-
-```zsh
-plugins=(... dnf)
-```
+`dnf` is the new package manager for RPM-based distributions, which
+replaces `yum`.
 
 ## Aliases
 

@@ -2,13 +2,25 @@
 
 Easily prefix your current or previous commands with `sudo` by pressing <kbd>esc</kbd> twice
 
-To use it, add `sudo` to the plugins array in your zshrc file:
+## Enabling the plugin
 
-```zsh
-plugins=(... sudo)
-```
+1.  Open your `.zshrc` file and add `sudo` in the plugins section:
 
-## Usage
+    ```zsh
+    plugins=(
+        # all your enabled plugins
+        sudo
+    )
+    ```
+
+2.  Restart your shell or restart your Terminal session:
+
+    ```console
+    $ exec zsh
+    $
+    ```
+
+## Usage examples
 
 ### Current typed commands
 

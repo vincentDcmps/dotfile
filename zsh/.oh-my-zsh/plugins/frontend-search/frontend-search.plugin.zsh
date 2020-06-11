@@ -19,7 +19,6 @@ alias lodash='frontend lodash'
 alias mdn='frontend mdn'
 alias nodejs='frontend nodejs'
 alias npmjs='frontend npmjs'
-alias packagephobia='frontend packagephobia'
 alias qunit='frontend qunit'
 alias reactjs='frontend reactjs'
 alias smacss='frontend smacss'
@@ -66,7 +65,6 @@ function frontend() {
     mdn            'https://developer.mozilla.org/search?q='
     nodejs         $(_frontend_fallback 'nodejs.org/en/docs/')
     npmjs          'https://www.npmjs.com/search?q='
-    packagephobia  'https://packagephobia.now.sh/result?p='
     qunit          'https://api.qunitjs.com/?s='
     reactjs        $(_frontend_fallback 'reactjs.org/')
     smacss         $(_frontend_fallback 'smacss.com')
@@ -84,7 +82,7 @@ function frontend() {
       print -P "%Uterm%u and what follows is what will be searched for in the %Ucontext%u website,"
       print -P "and %Ucontext%u is one of the following:"
       print -P ""
-      print -P "  angular, angularjs, bem, bootsnipp, caniuse, codepen, compassdoc, cssflow, packagephobia"
+      print -P "  angular, angularjs, bem, bootsnipp, caniuse, codepen, compassdoc, cssflow,"
       print -P "  dartlang, emberjs, fontello, flowtype, github, html5please, jestjs, jquery, lodash,"
       print -P "  mdn, npmjs, nodejs, qunit, reactjs, smacss, stackoverflow, unheap, vuejs, bundlephobia"
       print -P ""
@@ -100,7 +98,7 @@ function frontend() {
     echo ""
     echo "Valid contexts are:"
     echo ""
-    echo "  angular, angularjs, bem, bootsnipp, caniuse, codepen, compassdoc, cssflow, packagephobia"
+    echo "  angular, angularjs, bem, bootsnipp, caniuse, codepen, compassdoc, cssflow,"
     echo "  dartlang, emberjs, fontello, github, html5please, jest, jquery, lodash,"
     echo "  mdn, npmjs, nodejs, qunit, reactjs, smacss, stackoverflow, unheap, vuejs, bundlephobia"
     echo ""

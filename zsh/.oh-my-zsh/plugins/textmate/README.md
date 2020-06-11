@@ -3,8 +3,7 @@
 The plugin adds a function for the [TextMate](https://macromates.com) editor.
 
 To use it, add `textmate` to the plugins array of your zshrc file:
-
-```zsh
+```
 plugins=(... textmate)
 ```
 

@@ -1,7 +1,6 @@
 ---
 name: Bug report
-about: Create a report to help us improve Oh My Zsh
-labels: 'Type: support'
+about: Create a report to help us improve
 
 ---
 
@@ -11,26 +10,29 @@ an issue where no sections have been filled will be deleted without comment.
 -->
 
 **Describe the bug**
-A clear description of what the bug is.
+<!-- A clear and concise description of what the bug is. -->
 
 **To Reproduce**
-Steps to reproduce the behavior, for example:
-1. Enable this plugin '...'
-2. Run command '...' or try the autocomplete command '...'
+<!--
+Steps to reproduce the behavior:
+1. Enable plugin '...'
+2. Run command '...', _or_ try to complete command '...', _etc._
 3. See error
+-->
 
 **Expected behavior**
-A brief description of what should happen.
+<!-- A clear and concise description of what you expected to happen. -->
 
-**Screenshots and/or Recordings**
-If applicable, add screenshots to help explain your problem.
-You can also record an asciinema session: https://asciinema.org/
+**Screenshots or recordings**
+<!--
+If applicable, add screenshots or record an asciinema session (https://asciinema.org/)
+to help explain your problem.
+-->
 
-**Desktop (please complete the following information):**
- - OS / Distro: [e.g. Arch Linux, macOS]
- - Latest ohmyzsh Update?: [e.g. Yes/No]
- - ZSH Version: [e.g. 5.6]
+**System:**
+ - OS: [e.g. macOS]
+ - Zsh version [e.g. 5.6]
  - Terminal emulator [e.g. iTerm2]
 
 **Additional context**
-Add any other context about the problem here. This can be themes, plugins, custom configs.
+<!-- Add any other context about the problem here. -->

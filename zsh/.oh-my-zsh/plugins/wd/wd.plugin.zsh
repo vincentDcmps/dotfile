@@ -1,9 +1,6 @@
-#!/bin/zsh
-
 # WARP DIRECTORY
 # ==============
-# Jump to custom directories in terminal
-# because `cd` takes too long...
+# oh-my-zsh plugin
 #
 # @github.com/mfaerevaag/wd
 

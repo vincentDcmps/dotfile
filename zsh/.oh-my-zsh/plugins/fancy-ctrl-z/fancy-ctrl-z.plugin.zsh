@@ -1,10 +1,10 @@
 fancy-ctrl-z () {
   if [[ $#BUFFER -eq 0 ]]; then
     BUFFER="fg"
-    zle accept-line -w
+    zle accept-line
   else
-    zle push-input -w
-    zle clear-screen -w
+    zle push-input
+    zle clear-screen
   fi
 }
 zle -N fancy-ctrl-z

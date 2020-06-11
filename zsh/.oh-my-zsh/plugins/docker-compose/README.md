@@ -4,8 +4,7 @@ This plugin provides completion for [docker-compose](https://docs.docker.com/com
 aliases for frequent docker-compose commands.
 
 To use it, add docker-compose to the plugins array of your zshrc file:
-
-```zsh
+```
 plugins=(... docker-compose)
 ```
 
