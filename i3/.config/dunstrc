@@ -29,7 +29,7 @@
     # the top and down respectively.
     # The width can be negative.  In this case the actual width is the
     # screen width minus the width defined in within the geometry option.
-    geometry = "300x5-30+20"
+    geometry = "300x5-30+40"
 
     # Show how many messages are currently hidden (because of geometry).
     indicate_hidden = yes
@@ -135,7 +135,7 @@
     max_icon_size = 32
 
     # Paths to default icons.
-    icon_folders = /usr/share/icons/Numix/16/status/:/usr/share/icons/Numix/16/devices/
+    icon_folders = /usr/share/icons/Faenza/status/16:/usr/share/icons/Faenza/devices/16
 
     ### History ###
 
@@ -222,7 +222,7 @@
     frame_color = "#dca3a3"
     timeout = 0
     # Icon for notifications with critical urgency, uncomment to enable
-    icon = /usr/share/icons/Numix/16/status/error.svg
+    icon = /usr/share/icons/Faenza/status/16/error.png
 
 # Every section that isn't one of the above is interpreted as a rules to
 # override settings for certain messages.

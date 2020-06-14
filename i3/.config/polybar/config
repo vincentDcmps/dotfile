@@ -33,7 +33,7 @@ width = 100%
 height = 29
 ;offset-x = 1%
 ;offset-y = 1%
-radius = 6.0
+radius = 0.0
 fixed-center = false
 
 background = ${colors.background}
@@ -42,7 +42,7 @@ foreground = ${colors.foreground}
 line-size = 3
 line-color = #f00
 spacing=1
-border-size = 4
+border-size = 0
 border-color = #00000000
 
 padding-left = 0
@@ -80,8 +80,8 @@ cursor-scroll = ns-resize
 
 [module/xwindow]
 type = internal/xwindow
-label =   %title:0:30:...%
-
+label =   %title:0:50%
+label-maxlen = 50
 [module/xkeyboard]
 type = internal/xkeyboard
 blacklist-0 = num lock
@@ -189,7 +189,7 @@ icon-repeat = 
 toggle-on-foreground =
 toggle-off-foreground = #55
 
-label-song-maxlen = 25
+label-song-maxlen = 35
 label-song-ellipsis = true
 
 ; bar-progress-width = 15

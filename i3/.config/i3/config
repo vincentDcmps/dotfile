@@ -12,7 +12,7 @@
 ##
 exec --no-startup-id bash ~/script/autoxrandr &
 set $mod Mod4
-
+set $defaultTerm termite
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
 #font pango:monospace 8
@@ -32,10 +32,10 @@ font xft:Droid Sans Mono 10
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec termite
+bindsym $mod+Return exec $defaultTerm
 
 # kill focused window
-bindsym $mod+Shift+A kill
+bindsym $mod+Shift+Q kill
 
 # start dmenu (a program launcher)
 bindsym $mod+d exec --no-startup-id i3-dmenu-desktop --dmenu='rofi -theme ~/.config/i3/rofi.theme -show drun'
@@ -89,38 +89,50 @@ bindsym $mod+Shift+space floating toggle
 bindsym $mod+space focus mode_toggle
 
 # focus the parent container
-bindsym $mod+q focus parent
+bindsym $mod+a focus parent
 
 # focus the child container
-bindsym $mod+Shift+q focus child
+bindsym $mod+Shift+a focus child
+
+# Define names for default workspaces for which we configure key bindings later on.
+# We use variables to avoid repeating the names in multiple places.
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
 
 # switch to workspace
-bindsym $mod+ampersand workspace 1
-bindsym $mod+eacute workspace 2
-bindsym $mod+quotedbl workspace 3
-bindsym $mod+apostrophe workspace 4
-bindsym $mod+parenleft workspace 5
-bindsym $mod+minus workspace 6
-bindsym $mod+egrave workspace 7
-bindsym $mod+underscore workspace 8
-bindsym $mod+ccedilla workspace 9
-bindsym $mod+agrave workspace 10
-
-
-bindsym $mod+Tab workspace back_and_forth
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
+bindsym $mod+0 workspace $ws10
 
 # move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace 1
-bindsym $mod+Shift+eacute move container to workspace 2
-bindsym $mod+Shift+3 move container to workspace 3
-bindsym $mod+Shift+4 move container to workspace 4
-bindsym $mod+Shift+5 move container to workspace 5
-bindsym $mod+Shift+6 move container to workspace 6
-bindsym $mod+Shift+egrave move container to workspace 7
-bindsym $mod+Shift+8 move container to workspace 8
-bindsym $mod+Shift+ccedilla move container to workspace 9
-bindsym $mod+Shift+agrave move container to workspace 10
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8
+bindsym $mod+Shift+9 move container to workspace $ws9
+bindsym $mod+Shift+0 move container to workspace $ws10
 
+# use workspaces on different monitors
+ workspace $ws1 output primary
 # reload the configuration file
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
@@ -190,8 +202,8 @@ hide_edge_borders both
 new_window pixel 1 
 new_float normal 1
 ## Gaps
-gaps inner 20
-gaps outer 10 
+gaps inner 10
+gaps outer 0 
 smart_gaps on
 smart_borders on
 
@@ -207,6 +219,16 @@ bindsym XF86AudioPlay exec "mpc toggle"
 bindsym XF86AudioStop exec "mpc stop"
 bindsym XF86AudioNext exec "mpc next"
 bindsym XF86AudioPrev exec "mpc prev"
+
+bindsym XF86LaunchA exec "$defaultTerm"
+bindsym XF86Launch9 exec "keepassxc"
+bindsym XF86Launch8 exec "firefox"
+bindsym XF86Launch7 exec "code"
+bindsym XF86Launch6 exec "pavucontrol"
+bindsym Print exec "gnome-screenshot -a"
+bindsym mod1 + Print exec "gnome-screenshot -i"
+
+
 
 bindsym $mod+b exec --no-startup-id "firefox"
 
@@ -229,6 +251,7 @@ for_window [class="(?i)pavucontrol"] floating enable, move position mouse
 for_window [window_type="dialog"] floating enable
 for_window [window_type="menu"] floating enable
 for_window [class="Gnome-calculator" instance="gnome-calculator" title="Calculatrice" window_role="gnome-calculator"] floating enable
+for_window [class="Gnome-screenshot"] floating enable
 for_window [class="KeePass"] floating enable
 for_window [class="Docky"] floating enable
 for_window [title="cave a vin"] floating enable
@@ -239,6 +262,13 @@ exec --no-startup-id dunst -config ~/.config/dunstrc
 #       Update notifier Archlinux
 exec --no-startup-id aarchup            # exec octopi-notifier
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
-
+exec --no-startup-id xinput set-prop 13 325 1
+exec --no-startup-id xinput set-prop 13 309 1 
+exec --no-startup-id keepassxc
+exec --no-startup-id redshift-gtk
+exec --no-startup-id start-pulseaudio-x11
+exec_always --no-startup-id picom -b
+exec --no-startup-id numlockx
 exec_always --no-startup-id feh --bg-scale ~/.config/i3/wallpaper.jpg
 exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+exec start-pulseaudio-x11
