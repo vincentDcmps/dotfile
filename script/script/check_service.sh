@@ -1,4 +1,5 @@
-SERVICES=("syncthing@vincent" "named" "mariadb" "nginx" "php-fpm" "gitea" "tt-rss" "gunicorn-chainetv.socket" "gunicorn-supysonic" "rsyncd.service" "fail2ban" "supysonic-daemon" "home-assistant" "radicale")
+SERVICES=("syncthing@vincent" "mariadb" "nginx" "php-fpm" "gitea" "tt-rss" "gunicorn-chainetv.socket" "gunicorn-supysonic" "rsyncd.service" "fail2ban" "supysonic-daemon" "home-assistant" "radicale")
+CONTAINER=("pihole")
 HOST=$(hostname)
 RED='\033[0;31m'
 GREEN='\033[0;32m'
@@ -20,4 +21,9 @@ do
         echo $(journalctl -u $service --lines=10 -q)
     fi
     echo ""
+done
+for container in ${CONTAINER[@]}
+do
+   status=$(docker ps | grep $container  >/dev/null && (echo active) || (echo inactive))
+   echo -e "$container is $status"
 done
