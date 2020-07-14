@@ -16,7 +16,7 @@ services=("syncthing@vincent",
         "home-assistant",
         "radicale")
 
-containers=("pihole")
+containers=("pihole",)
 
 
 
@@ -58,9 +58,15 @@ class Container(object):
 
 
 if __name__ == '__main__':
-
-    if sys.argv[0] != "nowait":
+    wait=True
+    if len(sys.argv) > 1:
+        print(sys.argv[1])
+        if sys.argv[1] == "nowait":
+            wait=False
+    
+    if (wait):
         time.sleep(60)
+
 
     for serviceName in services:
         serviceObj=Service(serviceName)
