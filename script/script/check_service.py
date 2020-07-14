@@ -1,5 +1,6 @@
 import subprocess
 import time
+import sys
 
 services=("syncthing@vincent",
         "mariadb",
@@ -58,7 +59,8 @@ class Container(object):
 
 if __name__ == '__main__':
 
-    time.sleep(60)
+    if sys.argv[0] != "nowait":
+        time.sleep(60)
 
     for serviceName in services:
         serviceObj=Service(serviceName)
