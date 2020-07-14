@@ -47,9 +47,9 @@ class Container(object):
         try:
             proc=subprocess.check_output([cmd,'ps'],stderr=subprocess.STDOUT)
         except:
-            proc=""
+            proc=b''
             pass
-
+        proc.decode('UTF-8')
         if (proc.find(self.name) != -1):
             return True
         else:
@@ -61,7 +61,7 @@ if __name__ == '__main__':
     time.sleep(60)
 
     for serviceName in services:
-        serviceObj=Service("serviceName")
+        serviceObj=Service(serviceName)
         if (serviceObj.is_active()):
             print (f"{serviceObj.name} is active")
         else:
