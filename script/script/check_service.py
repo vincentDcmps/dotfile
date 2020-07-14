@@ -49,7 +49,7 @@ class Container(object):
         except:
             proc=b''
             pass
-        proc.decode('UTF-8')
+        proc=proc.decode('UTF-8')
         if (proc.find(self.name) != -1):
             return True
         else:
