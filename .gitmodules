@@ -16,3 +16,6 @@
 [submodule "zsh/.oh-my-zsh-custom/plugins/zsh-256color"]
 	path = zsh/.oh-my-zsh-custom/plugins/zsh-256color
 	url = https://github.com/chrissicool/zsh-256color
+[submodule "zsh/.oh-my-zsh"]
+	path = zsh/.oh-my-zsh
+	url = https://github.com/ohmyzsh/ohmyzsh
