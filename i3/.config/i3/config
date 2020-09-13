@@ -262,8 +262,7 @@ exec --no-startup-id dunst -config ~/.config/dunstrc
 #       Update notifier Archlinux
 exec --no-startup-id aarchup            # exec octopi-notifier
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
-exec --no-startup-id xinput set-prop 13 325 1
-exec --no-startup-id xinput set-prop 13 309 1 
+exec --no-startup-id python $HOME/script/xinput.py
 exec --no-startup-id keepassxc
 exec --no-startup-id redshift-gtk
 exec --no-startup-id start-pulseaudio-x11
