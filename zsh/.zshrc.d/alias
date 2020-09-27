@@ -68,3 +68,6 @@ alias disconnect_momentum='bluetoothctl disconnect 00:1B:66:8E:46:27 && bluetoot
 
 #sudo alias
 alias _='sudo '
+
+#alias MPV o avoid gnome blank screen
+alias mpv='gnome-session-inhibit mpv'
