@@ -3,7 +3,7 @@ import time
 import sys
 
 services=("syncthing@vincent",
-        "mariadb",
+        "postgresql",
         "nginx",
         "php-fpm",
         "gitea",
