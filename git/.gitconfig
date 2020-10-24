@@ -12,3 +12,5 @@
 	commitGraph = true
 [gc]
 	writeCommitGraph = true
+[submodule]
+	recurse = true
