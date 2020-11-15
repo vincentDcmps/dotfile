@@ -15,6 +15,7 @@ library:  ~/Sync/library.db
 import:
         move: yes
         write: yes
+        log: ~/Sync/import.log
         
 paths:
         default: $albumartist/$album%aunique{}/$track - $title 
