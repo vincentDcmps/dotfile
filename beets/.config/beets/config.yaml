@@ -27,8 +27,14 @@ paths:
         singleton: $artist/$title
       
 
-plugins: fetchart lyrics lastgenre fromfilename chroma web
+plugins: fetchart  lastgenre fromfilename chroma web convert
 
+convert:
+    auto: yes 
+    never_convert_lossy_files: yes
+    format: mp3
+    formats:
+      mp3: ffmpeg -i $source -y -vn -aq 0 $dest
 lastgenre:
         source: track
 
