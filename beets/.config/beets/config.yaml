@@ -28,7 +28,10 @@ paths:
         singleton: $artist/$title
       
 
-plugins: fetchart  lastgenre fromfilename chroma web convert
+plugins: fetchart  lastgenre fromfilename chroma web convert info mpdupdate rewrite missing
+
+rewrite:
+  artist .*Gorillaz.*: Gorillaz
 
 convert:
     auto: yes 
@@ -39,7 +42,8 @@ convert:
 lastgenre:
         source: track
 
-
+acoustid:
+  apikey: KPkFBJ4dVd
 fetchart:
         auto: yes
 
@@ -47,3 +51,7 @@ chroma:
        auto: yes
 
 threaded: yes
+
+mpd:
+  host: localhost
+  port: 6600
