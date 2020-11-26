@@ -1,4 +1,4 @@
-import subprocess
+mport subprocess
 import time
 import sys
 
@@ -14,7 +14,9 @@ services=("syncthing@vincent",
         "fail2ban",
         "supysonic-daemon",
         "home-assistant",
-        "radicale")
+        "radicale",
+        "chisel-server",
+        "JDownloader")
 
 containers=("pihole",)
 
@@ -64,7 +66,7 @@ if __name__ == '__main__':
             wait=False
     
     if (wait):
-        time.sleep(60)
+        time.sleep(15)
 
 
     for serviceName in services:
