@@ -1,7 +1,9 @@
 ############alias perso###################
 #set default pager & editor
 export PAGER="less -r"
-export EDITOR='vim'
+export EDITOR='nvim'
+export VISUAL='nvim'
+alias vim='nvim'
 
 #set shortcut directory
 alias diskstation='cd /mnt/diskstation'
