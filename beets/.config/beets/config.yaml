@@ -18,7 +18,7 @@ import:
         log: ~/Sync/import.log
         
 paths:
-        default: $albumartist/$album%aunique{}/$track - $title 
+        default: $albumartist/$album%aunique{}/$disc_and_track - $title 
         albumtype:classical: classical/$album%aunique{}/$track-$artist-$title 
         albumtype:Soundtrack: soundtracks/$album%aunique{}/$track-$artist-$title 
         comp: Compilations/$album%aunique{}/$track-$artist-$title
@@ -28,7 +28,11 @@ paths:
         singleton: $artist/$title
       
 
-plugins: fetchart  lastgenre fromfilename chroma web convert info mpdupdate rewrite missing
+plugins: fetchart  lastgenre fromfilename chroma web convert info mpdupdate rewrite missing subsonicupdate inline
+per_disc_numbering: True
+item_fields:
+    disc_and_track: u'%02i.%02i' % (disc, track) if
+                    disctotal > 1 else u'%02i' % (track)
 
 rewrite:
   artist .*Gorillaz.*: Gorillaz
@@ -36,8 +40,9 @@ rewrite:
 convert:
     auto: yes 
     never_convert_lossy_files: yes
-    format: mp3
+    format: ogg
     formats:
+      ogg: ffmpeg -i $source -y -vn -acodec libvorbis -aq 10 $dest
       mp3: ffmpeg -i $source -y -vn -aq 0 $dest
 lastgenre:
         source: track
@@ -53,5 +58,11 @@ chroma:
 threaded: yes
 
 mpd:
-  host: localhost
+  host: fixe-pc
   port: 6600
+
+subsonic:
+  url : https://supysonic.ducamps.win
+  user: vincent
+  pass: VLqRFQskz68xGjXUtjwnttax2
+  
