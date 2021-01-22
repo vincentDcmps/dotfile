@@ -20,15 +20,19 @@ import:
 paths:
         default: $albumartist/$album%aunique{}/$disc_and_track - $title 
         albumtype:classical: classical/$album%aunique{}/$track-$artist-$title 
-        albumtype:Soundtrack: soundtracks/$album%aunique{}/$track-$artist-$title 
-        comp: Compilations/$album%aunique{}/$track-$artist-$title
+        albumtype:Soundtrack: soundtracks/$album%aunique{}/$track-$artist-$title
+        albumartist:various artist: Compilations/$album%aunique{}/$track-$artist-$title
         genre:classical: classical/$artist-$title
         genre:Soundtrack: soundtracks/$artist-$title
 
         singleton: $artist/$title
       
 
-plugins: fetchart  lastgenre fromfilename chroma web convert info mpdupdate rewrite missing subsonicupdate inline
+plugins: fetchart  lastgenre fromfilename chroma web convert info mpdupdate rewrite missing subsonicupdate inline unimported
+
+unimported:
+    ignore_extensions: jpg png
+
 per_disc_numbering: True
 item_fields:
     disc_and_track: u'%02i.%02i' % (disc, track) if
