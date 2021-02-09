@@ -28,7 +28,7 @@ paths:
         singleton: $artist/$title
       
 
-plugins: fetchart  lastgenre fromfilename chroma web convert info mpdupdate rewrite missing subsonicupdate inline unimported
+plugins: fetchart  lastgenre fromfilename chroma web convert info mpdupdate rewrite missing subsonicupdate inline unimported lyrics duplicates
 
 unimported:
     ignore_extensions: jpg png
@@ -45,6 +45,7 @@ convert:
     auto: yes 
     never_convert_lossy_files: yes
     format: ogg
+    quiet: yes
     formats:
       ogg: ffmpeg -i $source -y -vn -acodec libvorbis -aq 10 $dest
       mp3: ffmpeg -i $source -y -vn -aq 0 $dest
@@ -69,4 +70,6 @@ subsonic:
   url : https://supysonic.ducamps.win
   user: vincent
   pass: VLqRFQskz68xGjXUtjwnttax2
-  
+lyrics:
+  auto: yes
+  google_API_key: AIzaSyAKBfJccCDyF_osTUkqQryt2fVUvd_F7QE
