@@ -1,7 +1,7 @@
 
 call plug#begin('~/.local/share/nvim/plugged')
 	Plug 'davidhalter/jedi-vim'
-	Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 	Plug 'zhou13/vim-easyescape'
 	Plug 'zchee/deoplete-jedi'
 	Plug 'vim-airline/vim-airline'
@@ -10,6 +10,9 @@ call plug#begin('~/.local/share/nvim/plugged')
 	Plug 'terryma/vim-multiple-cursors'
 	Plug 'scrooloose/nerdtree'
 	Plug 'morhetz/gruvbox'
+	Plug 'SirVer/ultisnips'
+	Plug 'honza/vim-snippets'
+	Plug 'tpope/vim-fugitive'
 call plug#end()
 "Config Section 
 set number
@@ -26,4 +29,9 @@ set smartcase
 set mouse=a
 colorscheme gruvbox
 set background=dark " use dark mode
-set ts=4
+set tabstop=4       " number of visual spaces per TAB
+set softtabstop=4   " number of spaces in tab when editing
+set shiftwidth=4    " number of spaces to use for autoindent
+set expandtab       " tabs are space
+set autoindent
+set copyindent      " copy indent from the previous line
