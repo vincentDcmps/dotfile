@@ -16,7 +16,8 @@ services=("syncthing@vincent",
         "home-assistant",
         "radicale",
         "chisel-server",
-        "JDownloader")
+        "JDownloader",
+        "bitwarden_rs")
 
 containers=("pihole",)
 
