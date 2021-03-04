@@ -7,12 +7,13 @@ call plug#begin('~/.local/share/nvim/plugged')
 	Plug 'vim-airline/vim-airline'
 	Plug 'jiangmiao/auto-pairs'
 	Plug 'scrooloose/nerdcommenter'
-	Plug 'terryma/vim-multiple-cursors'
+    "Plug 'terryma/vim-multiple-cursors'
 	Plug 'scrooloose/nerdtree'
 	Plug 'morhetz/gruvbox'
 	Plug 'SirVer/ultisnips'
 	Plug 'honza/vim-snippets'
 	Plug 'tpope/vim-fugitive'
+	Plug 'freitass/todo.txt-vim'
 call plug#end()
 "Config Section 
 set number
