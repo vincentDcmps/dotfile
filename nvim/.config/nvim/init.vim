@@ -14,6 +14,8 @@ call plug#begin('~/.local/share/nvim/plugged')
 	Plug 'honza/vim-snippets'
 	Plug 'tpope/vim-fugitive'
 	Plug 'freitass/todo.txt-vim'
+	Plug 'junegunn/fzf'
+	Plug 'airblade/vim-gitgutter'
 call plug#end()
 "Config Section 
 set number
