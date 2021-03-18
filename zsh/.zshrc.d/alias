@@ -76,3 +76,7 @@ alias mpv='gnome-session-inhibit mpv'
 
 #alias sortie de tmux en session ssh
 alias exitTmux='tmux detach -P'
+
+# open a session bitwarden
+alias bwsession='export BW_SESSION="$(bw unlock --raw)"'
+
