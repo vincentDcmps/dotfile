@@ -41,12 +41,6 @@ alias cleaner='filebot -script fn:cleaner .'
 #synchro music directory for laptop
 alias update-music-folder='rsync-update /mnt/diskstation/music/ ~/Music/'
 
-#alias cache pacman
-function syncpacmancache (){
-sudo rsync -avzu --progress -h vincent@$1:/var/cache/pacman/pkg/ /var/cache/pacman/pkg/
-
-}
-
 alias pacmanclean='sudo paccache -r &&sudo  paccache -ruk0'
 alias yayupgrade='yay -Sy &&yay -Qu &&yay -Syu'
 
@@ -80,3 +74,10 @@ alias exitTmux='tmux detach -P'
 # open a session bitwarden
 alias bwsession='export BW_SESSION="$(bw unlock --raw)"'
 
+# revove entry from knowhost
+
+function removeknowhost (){
+    if [ -n "$1" ]; then
+        sed -i "/^$1/d" ~/.ssh/known_hosts
+    fi
+}
