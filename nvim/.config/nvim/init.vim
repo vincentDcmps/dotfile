@@ -16,6 +16,7 @@ call plug#begin('~/.local/share/nvim/plugged')
 	Plug 'freitass/todo.txt-vim'
 	Plug 'junegunn/fzf'
 	Plug 'airblade/vim-gitgutter'
+	Plug 'dense-analysis/ale'
 call plug#end()
 "Config Section 
 set number
@@ -24,6 +25,12 @@ let g:airline_powerline_fonts = 1
 let mapleader = "\<Space>"
 let g:easyescape_chars = { "j": 1, "k": 1 }
 let g:easyescape_timeout = 100
+let g:ale_lint_on_enter = 1
+let g:ale_lint_on_save                = 1
+let g:ale_fix_on_save                 = 1
+let g:ale_sign_column_always = 1
+let g:airline#extensions#ale#enabled = 1
+
 inoremap jk <esc>
 inoremap kj <esc>
 set ignorecase
