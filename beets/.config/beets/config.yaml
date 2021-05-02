@@ -1,64 +1,58 @@
-
-
 #██████╗ ███████╗███████╗████████╗███████╗
 #██╔══██╗██╔════╝██╔════╝╚══██╔══╝██╔════╝
 #██████╔╝█████╗  █████╗     ██║   ███████╗
 #██╔══██╗██╔══╝  ██╔══╝     ██║   ╚════██║
 #██████╔╝███████╗███████╗   ██║   ███████║
 #╚═════╝ ╚══════╝╚══════╝   ╚═╝   ╚══════╝
-                                         
-
-
 
 directory: /mnt/diskstation/music
-library:  ~/Sync/library.db
+library: ~/Sync/library.db
 import:
-        move: yes
-        write: yes
-        log: ~/Sync/import.log
-        
-paths:
-        default: $albumartist/$album%aunique{}/$disc_and_track - $title 
-        albumtype:classical: classical/$album%aunique{}/$track-$artist-$title 
-        albumtype:Soundtrack: soundtracks/$album%aunique{}/$track-$artist-$title
-        albumartist:various artist: Compilations/$album%aunique{}/$track-$artist-$title
-        genre:classical: classical/$artist-$title
-        genre:Soundtrack: soundtracks/$artist-$title
+  move: yes
+  write: yes
+  log: ~/Sync/import.log
 
-        singleton: $artist/$title
-      
+paths:
+  default: $albumartist/$album%aunique{}/$disc_and_track - $title
+  albumtype:classical: classical/$album%aunique{}/$track-$artist-$title
+  albumtype:Soundtrack: soundtracks/$album%aunique{}/$track-$artist-$title
+  albumartist:various artist: Compilations/$album%aunique{}/$track-$artist-$title
+  genre:classical: classical/$artist-$title
+  genre:Soundtrack: soundtracks/$artist-$title
+
+  singleton: $artist/$title
 
 plugins: fetchart  lastgenre fromfilename chroma web convert info mpdupdate rewrite missing subsonicupdate inline unimported lyrics duplicates
 
 unimported:
-    ignore_extensions: jpg png
+  ignore_extensions: jpg png
 
 per_disc_numbering: True
 item_fields:
-    disc_and_track: u'%02i.%02i' % (disc, track) if
-                    disctotal > 1 else u'%02i' % (track)
+  disc_and_track: u'%02i.%02i' % (disc, track) if
+    disctotal > 1 else u'%02i' % (track)
 
 rewrite:
   artist .*Gorillaz.*: Gorillaz
 
 convert:
-    auto: yes 
-    never_convert_lossy_files: yes
-    format: ogg
-    quiet: yes
-    formats:
-      ogg: ffmpeg -i $source -y -vn -acodec libvorbis -aq 10 $dest
-      mp3: ffmpeg -i $source -y -vn -aq 0 $dest
+  auto: yes
+  never_convert_lossy_files: yes
+  format: ogg
+  quiet: yes
+  formats:
+    ogg: ffmpeg -i $source -y -vn -acodec libvorbis -aq 10 $dest
+    mp3: ffmpeg -i $source -y -vn -aq 0 $dest
 lastgenre:
-        source: track
+  source: track
 
 acoustid:
   apikey: KPkFBJ4dVd
 fetchart:
-        auto: yes
+  auto: yes
 
 chroma:
-       auto: yes
+  auto: yes
 
 threaded: yes
 
@@ -67,9 +61,9 @@ mpd:
   port: 6600
 
 subsonic:
-  url : https://supysonic.ducamps.win
+  url: https://supysonic.ducamps.win
   user: vincent
   pass: VLqRFQskz68xGjXUtjwnttax2
 lyrics:
-  auto: yes
+  auto: false
   google_API_key: AIzaSyAKBfJccCDyF_osTUkqQryt2fVUvd_F7QE
