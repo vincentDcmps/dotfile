@@ -17,8 +17,9 @@ call plug#begin('~/.local/share/nvim/plugged')
 	Plug 'junegunn/fzf'
 	Plug 'airblade/vim-gitgutter'
 	Plug 'dense-analysis/ale'
+	Plug 'jmcantrell/vim-virtualenv'
 call plug#end()
-"Config Section 
+"Config Section
 set number
 let g:deoplete#enable_at_startup = 1
 let g:airline_powerline_fonts = 1
