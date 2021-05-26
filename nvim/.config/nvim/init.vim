@@ -1,4 +1,5 @@
-
+let g:python3_host_prog='/usr/bin/python3'
+let g:python_host_prog='/usr/bin/python'
 call plug#begin('~/.local/share/nvim/plugged')
 	Plug 'davidhalter/jedi-vim'
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -17,10 +18,10 @@ call plug#begin('~/.local/share/nvim/plugged')
 	Plug 'junegunn/fzf'
 	Plug 'airblade/vim-gitgutter'
 	Plug 'dense-analysis/ale'
-	Plug 'jmcantrell/vim-virtualenv'
 call plug#end()
 "Config Section
 set number
+
 let g:deoplete#enable_at_startup = 1
 let g:airline_powerline_fonts = 1
 let mapleader = "\<Space>"
@@ -36,6 +37,7 @@ let g:ale_fixers = {
 \   'javascript': ['prettier'],
 \   'markdown': ['prettier'],
 \   'yaml': ['prettier'],
+\   'python': ['black'],
 \}
 inoremap jk <esc>
 inoremap kj <esc>
