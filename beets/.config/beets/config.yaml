@@ -22,7 +22,7 @@ paths:
 
   singleton: $artist/$title
 
-plugins: fetchart  lastgenre fromfilename chroma web convert info mpdupdate rewrite missing subsonicupdate inline unimported lyrics duplicates
+plugins: fetchart  lastgenre fromfilename chroma convert info mpdupdate rewrite missing subsonicupdate inline unimported lyrics duplicates
 
 unimported:
   ignore_extensions: jpg png
