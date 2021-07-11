@@ -65,5 +65,5 @@ subsonic:
   user: vincent
   pass: VLqRFQskz68xGjXUtjwnttax2
 lyrics:
-  auto: false
+  auto: true
   google_API_key: AIzaSyAKBfJccCDyF_osTUkqQryt2fVUvd_F7QE
