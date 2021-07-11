@@ -4,7 +4,7 @@
 
 zstyle :omz:plugins:ssh-agent agent-forwarding on
 #
- export SSH_KEY_PATH="~/.ssh/rsa_id"
+export SSH_KEY_PATH="~/.ssh/rsa_id"
 #If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -35,10 +35,10 @@ DISABLE_AUTO_UPDATE="false"
 # DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
- ENABLE_CORRECTION="true"
+ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
- COMPLETION_WAITING_DOTS="true"
+COMPLETION_WAITING_DOTS="true"
 
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
@@ -57,11 +57,14 @@ ZSH_CUSTOM=$HOME/.oh-my-zsh-custom
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(archlinux common-aliases cp systemd colored-man-pages extract rsync history-substring-search nmap sudo systemadmin wakeonlan git zsh-256color tmux thefuck zsh-syntax-highlighting pip pyenv python docker fzf)
-
+plugins=(archlinux common-aliases cp systemd colored-man-pages extract rsync history-substring-search nmap sudo systemadmin wakeonlan git zsh-256color tmux thefuck zsh-syntax-highlighting pip pyenv python docker fzf fzf-tab)
 
 # User configuration
-
+# fzf-tab option
+zstyle ':completion:*:git-checkout:*' sort false
+zstyle ':completion:*:git-diff:*' sort false
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+zstyle ':completion:*:descriptions' format '[%d]'
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
@@ -87,7 +90,6 @@ plugins=(archlinux common-aliases cp systemd colored-man-pages extract rsync his
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-
 ZSH_CACHE_DIR=$HOME/.oh-my-zsh-cache
 if [[ ! -d $ZSH_CACHE_DIR ]]; then
   mkdir $ZSH_CACHE_DIR
@@ -97,7 +99,3 @@ for file in ~/.zshrc.d/*; do
     source "$file"
 done
 source $ZSH/oh-my-zsh.sh
-
-
-
-
