@@ -99,3 +99,5 @@ for file in ~/.zshrc.d/*; do
     source "$file"
 done
 source $ZSH/oh-my-zsh.sh
+
+source /home/vincent/.config/broot/launcher/bash/br
