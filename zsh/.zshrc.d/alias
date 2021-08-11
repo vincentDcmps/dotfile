@@ -33,9 +33,9 @@ alias du='du -h'
 alias df='df -h'
 alias rr='rm -r'
 alias rrf='rm -rf'
-#set commande filebot 
+#set commande filebot
 alias trieserie='filebot --format "/mnt/diskstation/media/serie/{n}/Saison {s}/{e.pad(2)}-{t}/{s.pad(2)}x{e.pad(2)}-{t}" --db thetvdb -non-strict --lang fr  -rename -no-xattr'
-alias triefilm='filebot --format "/mnt/diskstation/media/film/{n} ({y})/{n}" --db themoviedb --lang fr -rename -non-strict -no-xattr' 
+alias triefilm='filebot --format "/mnt/diskstation/media/film/{n} ({y})/{n}" --db themoviedb --lang fr -rename -non-strict -no-xattr'
 alias cleaner='filebot -script fn:cleaner .'
 
 #synchro music directory for laptop
@@ -69,7 +69,7 @@ alias _='sudo '
 alias mpv='gnome-session-inhibit mpv'
 
 #alias sortie de tmux en session ssh
-alias exitTmux='tmux detach -P'
+alias exitTmux=''
 
 # open a session bitwarden
 alias bwsession='export BW_SESSION="$(bw unlock --raw)"'
@@ -80,4 +80,12 @@ function removeknowhost (){
     if [ -n "$1" ]; then
         sed -i "/^$1/d" ~/.ssh/known_hosts
     fi
+}
+
+function exi (){
+  if [ -n "$TMUX" ]; then
+    tmux detach -P
+  else
+    exit
+  fi
 }
