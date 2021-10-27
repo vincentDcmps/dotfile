@@ -33,19 +33,19 @@ colors:
     white:   '#fdf6e3' # base3
 font:
   normal:
-    family: Cascadia Code PL
+    family: Cascadia Code
     style: Regular
 
   bold:
-    family: Cascadia Code PL
+    family: Cascadia Code
     style: Bold
 
   italic:
-    family: Cascadia Code PL
+    family: Cascadia Code
     style: Italic
 
   bold_italic:
-    family: Cascadia Code PL
+    family: Cascadia Code
     style: Bold Italic
 
   size: 11
