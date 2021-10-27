@@ -2,22 +2,30 @@ let g:python3_host_prog='/usr/bin/python3'
 let g:python_host_prog='/usr/bin/python'
 call plug#begin('~/.local/share/nvim/plugged')
 	Plug 'davidhalter/jedi-vim'
-    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-	Plug 'zhou13/vim-easyescape'
-	Plug 'zchee/deoplete-jedi'
-	Plug 'vim-airline/vim-airline'
-	Plug 'jiangmiao/auto-pairs'
-	Plug 'scrooloose/nerdcommenter'
-    "Plug 'terryma/vim-multiple-cursors'
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+  Plug 'zhou13/vim-easyescape'
+  Plug 'zchee/deoplete-jedi'
 	Plug 'scrooloose/nerdtree'
-	Plug 'morhetz/gruvbox'
 	Plug 'SirVer/ultisnips'
 	Plug 'honza/vim-snippets'
 	Plug 'tpope/vim-fugitive'
 	Plug 'freitass/todo.txt-vim'
 	Plug 'junegunn/fzf'
-	Plug 'airblade/vim-gitgutter'
 	Plug 'dense-analysis/ale'
+  Plug 'rktjmp/lush.nvim'
+  Plug 'ellisonleao/gruvbox.nvim'
+  Plug 'Shougo/deoplete.nvim' , { 'do': ':UpdateRemotePlugins' }
+  Plug 'lewis6991/gitsigns.nvim'
+  Plug 'nvim-lua/plenary.nvim'
+  Plug 'kyazdani42/nvim-web-devicons'
+  Plug 'romgrk/barbar.nvim'
+  Plug 'yamatsum/nvim-cursorline'
+  Plug 'famiu/feline.nvim'
+  Plug 'windwp/nvim-autopairs'
+  Plug 'lukas-reineke/indent-blankline.nvim'
+  Plug 'kyazdani42/nvim-tree.lua'
+  Plug 'folke/which-key.nvim'
+  Plug 'AckslD/nvim-whichkey-setup.lua'
 call plug#end()
 "Config Section
 set number
@@ -52,8 +60,11 @@ set shiftwidth=2   " number of spaces to use for autoindent
 set expandtab       " tabs are space
 set autoindent
 set copyindent      " copy indent from the previous line
+set termguicolors
+nnoremap <C-n> :NvimTreeToggle<CR>
+nnoremap <leader>r :NvimTreeRefresh<CR>
+nnoremap <leader>n :NvimTreeFindFile<CR>
 
-map <C-n> :NERDTreeToggle<CR>
-
+lua require('init')
 " Allow saving of files as sudo when I forgot to start vim using sudo.
 cmap w!! w !sudo tee > /dev/null %
