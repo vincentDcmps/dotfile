@@ -26,6 +26,7 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'kyazdani42/nvim-tree.lua'
   Plug 'folke/which-key.nvim'
   Plug 'AckslD/nvim-whichkey-setup.lua'
+  Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 call plug#end()
 "Config Section
 set number
