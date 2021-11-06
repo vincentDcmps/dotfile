@@ -14,4 +14,4 @@ require("which-key").setup {
 
 }
 
-
+require'nvim-web-devicons'.get_icons()
