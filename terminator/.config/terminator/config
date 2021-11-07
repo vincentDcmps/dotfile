@@ -21,7 +21,7 @@
     background_darkness = 0.9
     background_type = transparent
     cursor_color = "#eee8d5"
-    font = Source Code Pro for Powerline Medium 10
+    font = Cascadia Code
     foreground_color = "#eee8d5"
     login_shell = True
     palette = "#073642:#d30102:#859900:#b58900:#2c96f9:#d33682:#2aa198:#839496:#586e75:#cb4b16:#859900:#b58900:#268bd2:#d33682:#2aa198:#93a1a1"
