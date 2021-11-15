@@ -66,6 +66,7 @@ nnoremap <C-n> :NvimTreeToggle<CR>
 nnoremap <leader>r :NvimTreeRefresh<CR>
 nnoremap <leader>n :NvimTreeFindFile<CR>
 nnoremap <silent> <C-s>    :BufferPick<CR>
+noremap <silent> <C-n> :lua require'tree'.toggle()<CR>
 lua require('init')
 " Allow saving of files as sudo when I forgot to start vim using sudo.
 cmap w!! w !sudo tee > /dev/null %
