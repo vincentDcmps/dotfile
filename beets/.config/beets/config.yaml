@@ -64,6 +64,7 @@ subsonic:
   url: https://supysonic.ducamps.win
   user: vincent
   pass: VLqRFQskz68xGjXUtjwnttax2
+  auth: password
 lyrics:
-  auto: true
+  auto: false
   google_API_key: AIzaSyAKBfJccCDyF_osTUkqQryt2fVUvd_F7QE
