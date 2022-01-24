@@ -69,7 +69,14 @@ alias _='sudo '
 alias mpv='gnome-session-inhibit mpv'
 
 #alias sortie de tmux en session ssh
-alias exitTmux=''
+
+function exi (){
+  if [ -n "$TMUX" ]; then
+    tmux detach -P
+  else
+    exit
+  fi
+}
 
 # open a session bitwarden
 alias bwsession='export BW_SESSION="$(bw unlock --raw)"'
@@ -80,12 +87,4 @@ function removeknowhost (){
     if [ -n "$1" ]; then
         sed -i "/^$1/d" ~/.ssh/known_hosts
     fi
-}
-
-function exi (){
-  if [ -n "$TMUX" ]; then
-    tmux detach -P
-  else
-    exit
-  fi
 }
