@@ -90,6 +90,10 @@ zstyle ':completion:*:descriptions' format '[%d]'
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
+#tmux config path
+ZSH_TMUX_CONFIG=$HOME/.config/tmux/tmux.conf
+
 ZSH_CACHE_DIR=$HOME/.oh-my-zsh-cache
 if [[ ! -d $ZSH_CACHE_DIR ]]; then
   mkdir $ZSH_CACHE_DIR
