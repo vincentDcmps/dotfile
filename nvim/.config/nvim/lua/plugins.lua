@@ -120,7 +120,7 @@ return require('packer').startup {
 	})
   
   use 'AckslD/nvim-whichkey-setup.lua'
-  use 'romgrk/barbar.nvim'
+
   use 'famiu/feline.nvim'
   use 'yamatsum/nvim-cursorline'
   use 'freitass/todo.txt-vim'
@@ -137,8 +137,25 @@ return require('packer').startup {
   use({
     'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate',
+    config = function()
+      require'nvim-treesitter.configs'.setup {
+        ensure_installed = "maintained",
+        highlight = {
+          enable = true
+        }
+    }
+    end
   })
-
+  use {
+    'akinsho/nvim-bufferline.lua',
+    requires = {
+      'kyazdani42/nvim-web-devicons'
+    },
+    config = function()
+      require("bufferline").setup({})
+    end
+    }
+  use 'romgrk/barbar.vim'
   if packer_bootstrap then
       require('packer').sync()
     end
