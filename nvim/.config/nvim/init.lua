@@ -7,7 +7,6 @@ vim.cmd([[
     autocmd BufWritePost plugins.lua source <afile> | PackerCompile
   augroup end
 ]])
-
 -------------
 -- Options --
 -- ----------
@@ -19,9 +18,7 @@ vim.opt.smartcase = true
 vim.opt.mouse = 'a'
 vim.opt.background = 'dark'
 vim.opt.tabstop= 2
-vim.opt.softtabstop = 2
-vim.opt.shiftwidth= 2
-vim.opt.expandtab = true
+vim.opt.softtabstop = 2 vim.opt.shiftwidth= 2 vim.opt.expandtab = true
 vim.opt.autoindent = true
 vim.opt.copyindent= true
 vim.opt.termguicolors = true
@@ -58,7 +55,7 @@ vim.api.nvim_set_keymap('i', 'kj','<esc>', {noremap = true})
 vim.api.nvim_set_keymap('n', '<C-n>',':NvimTreeToggle<CR>', {noremap = true})
 vim.api.nvim_set_keymap('n', '<leader>r',':NvimTreeRefresh<CR>', {noremap = true})
 vim.api.nvim_set_keymap('n', '<leader>n',':NvimTreeFindFile<CR>', {noremap = true})
-vim.api.nvim_set_keymap('n', '<silent> <C-s>',':BufferPicleaderk<CR>', {noremap = true})
+--vim.api.nvim_set_keymap('n', '<C-s>',':BufferLinePick<CR>', {noremap = true})
 vim.api.nvim_set_keymap('c', 'w!!','w !sudo tee > /dev/null %', {noremap = true})
 
   local cmp = require'cmp'
@@ -85,6 +82,7 @@ vim.api.nvim_set_keymap('c', 'w!!','w !sudo tee > /dev/null %', {noremap = true}
       { name = 'ultisnips' }, -- For ultisnips users.
     }, {
       { name = 'buffer' },
+      { name = 'calc'},
     })
   })
 
@@ -103,3 +101,10 @@ vim.api.nvim_set_keymap('c', 'w!!','w !sudo tee > /dev/null %', {noremap = true}
       { name = 'cmdline' }
     })
   })
+
+  -- If you want insert `(` after select function or method item
+local cmp_autopairs = require('nvim-autopairs.completion.cmp')
+local cmp = require('cmp')
+cmp.event:on( 'confirm_done', cmp_autopairs.on_confirm_done({  map_char = { tex = '' } }))
+-- add a lisp filetype (wrap my-function), FYI: Hardcoded = { "clojure", "clojurescript", "fennel", "janet" }
+cmp_autopairs.lisp[#cmp_autopairs.lisp+1] = "racket"

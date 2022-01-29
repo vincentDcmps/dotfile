@@ -74,6 +74,77 @@ return require('packer').startup {
         }
       end
     }
+   -- Language server protocol
+    use {
+      'williamboman/nvim-lsp-installer',
+      requires = {
+        'neovim/nvim-lspconfig',
+      },
+      run = function()
+        local required_servers = {
+          "ansiblels",
+          "bashls",
+          "diagnosticls",
+          "dockerls",
+          "jsonls",
+          "pylsp",
+          "pyright",
+          "sqls",
+          "yamlls",
+          "remark_ls",
+        }
+
+        require "nvim-lsp-installer.ui.status-win"().open()
+        local lsp_installer_servers = require'nvim-lsp-installer.servers'
+        for _, required_server in pairs(required_servers) do
+          local _, server = lsp_installer_servers.get_server(required_server)
+          if not server:is_installed() then
+            server:install()
+          end
+        end
+      end,
+      config = function()
+        local lsp_installer = require("nvim-lsp-installer")
+
+        lsp_installer.on_server_ready(function(server)
+          local on_attach = function(client, bufnr)
+            local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+            local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
+
+            --Enable completion triggered by <c-x><c-o>
+            buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
+
+            -- Mappings.
+            local opts = { noremap=true, silent=true }
+
+            -- See `:help vim.lsp.*` for documentation on any of the below functions
+            buf_set_keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+            buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
+            buf_set_keymap('n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
+            buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
+            buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+            buf_set_keymap('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
+            buf_set_keymap('n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
+            buf_set_keymap('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
+            buf_set_keymap('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
+            buf_set_keymap('n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+            buf_set_keymap('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+            buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+            buf_set_keymap('n', '<space>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
+            buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
+            buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
+            buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
+            buf_set_keymap('n', '<space>=', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
+          end
+
+          server:setup({
+            on_attach = on_attach()
+          })
+
+          vim.cmd [[ do User LspAttachBuffers ]]
+        end)
+      end
+    }
   -- Autocomplete
     use {
       'hrsh7th/nvim-cmp',
@@ -85,6 +156,8 @@ return require('packer').startup {
         'hrsh7th/cmp-cmdline',
         'hrsh7th/cmp-nvim-lsp',
         'hrsh7th/cmp-path',
+        'hrsh7th/cmp-calc',
+
 
         -- snippets
         'SirVer/ultisnips',
@@ -92,6 +165,21 @@ return require('packer').startup {
         'onsails/lspkind-nvim'
       }
     }
+
+  use({'jose-elias-alvarez/null-ls.nvim',
+        config= function()
+          require("null-ls").setup({
+        sources = {
+          require("null-ls").builtins.formatting.prettier,
+          require("null-ls").builtins.formatting.trim_whitespace,
+          require("null-ls").builtins.formatting.trim_newlines,
+          require("null-ls").builtins.formatting.black,
+          require("null-ls").builtins.diagnostics.eslint,
+          require("null-ls").builtins.diagnostics.ansiblelint,
+          require("null-ls").builtins.completion.spell,
+          },
+        })
+        end})
 
 	-- File manager
 	use({
@@ -121,16 +209,35 @@ return require('packer').startup {
   
   use 'AckslD/nvim-whichkey-setup.lua'
 
-  use 'famiu/feline.nvim'
   use 'yamatsum/nvim-cursorline'
   use 'freitass/todo.txt-vim'
   
-  use 'tpope/vim-fugitive'
+  use {
+    'TimUntersberger/neogit',
+    requires = {
+      'nvim-lua/plenary.nvim'
+    },
+    keys = {
+      '<LEADER>gs'
+    },
+    cmd = {
+      'Neogit'
+    },
+    config = function()
+      require('neogit').setup {
+        disable_commit_confirmation = true,
+        disable_context_highlighting = true
+      }
 
+        vim.api.nvim_set_keymap('n', '<LEADER>gs', ':Neogit kind=split<CR>', {noremap = true})
+      end
+    }
   use ({
     'windwp/nvim-autopairs',
     config = function()
-      require('nvim-autopairs').setup{}
+      require('nvim-autopairs').setup{
+        fast_wrap= {},
+      }
     end
   })
 
@@ -146,16 +253,34 @@ return require('packer').startup {
     }
     end
   })
+
   use {
-    'akinsho/nvim-bufferline.lua',
+    'akinsho/bufferline.nvim',
     requires = {
       'kyazdani42/nvim-web-devicons'
     },
     config = function()
-      require("bufferline").setup({})
+      require('bufferline').setup{
+        options = {
+          offsets = {
+            {
+              filetype = 'NvimTree',
+              text = 'File Explorer',
+              highlight = 'Directory',
+              text_align = 'left'
+            }
+          }
+        }
+      }
+      vim.api.nvim_set_keymap('n', '<C-l>', ':BufferLineCycleNext<CR>', {noremap = true})
+      vim.api.nvim_set_keymap('n', '<C-h>', ':BufferLineCyclePrev<CR>', {noremap = true})
     end
     }
-  use 'romgrk/barbar.vim'
+  use {'feline-nvim/feline.nvim',
+    config = function()
+      require('feline').setup({})
+    end
+  }
   if packer_bootstrap then
       require('packer').sync()
     end
