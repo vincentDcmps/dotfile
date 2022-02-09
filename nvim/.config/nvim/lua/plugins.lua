@@ -216,12 +216,12 @@ return require('packer').startup {
 			require("which-key").setup({})
 		end,
 	})
-  
+
   use 'AckslD/nvim-whichkey-setup.lua'
 
   use 'yamatsum/nvim-cursorline'
   use 'freitass/todo.txt-vim'
-  
+
   use {
     'TimUntersberger/neogit',
     requires = {
@@ -291,10 +291,9 @@ return require('packer').startup {
       require('feline').setup({})
     end
   }
+  use {'sheerun/vim-polyglot'}
   if packer_bootstrap then
       require('packer').sync()
     end
-  end 
+  end
 }
-
-
