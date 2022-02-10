@@ -185,7 +185,6 @@ return require('packer').startup {
           require("null-ls").builtins.formatting.trim_newlines,
           require("null-ls").builtins.formatting.black,
           require("null-ls").builtins.diagnostics.eslint,
-          require("null-ls").builtins.diagnostics.ansiblelint,
           require("null-ls").builtins.completion.spell,
           },
         })
