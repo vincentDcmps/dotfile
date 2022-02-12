@@ -105,7 +105,15 @@ return require('packer').startup {
       end,
       config = function()
         local lsp_installer = require("nvim-lsp-installer")
+        local enhance_server_opts = {
+          -- Provide settings that should only apply to the "eslintls" server
+          ["ansiblels"] = function(opts)
+            opts.filetypes = {
+                "yaml.ansible"
+            }
 
+          end,
+        }
         lsp_installer.on_server_ready(function(server)
           local on_attach = function(client, bufnr)
             local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
@@ -136,10 +144,15 @@ return require('packer').startup {
             buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
             buf_set_keymap('n', '<space>=', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
           end
+          local opts = {
+            on_attach=on_attach()
+          }
+          if enhance_server_opts[server.name] then
+            -- Enhance the default opts with the server-specific ones
+            enhance_server_opts[server.name](opts)
+          end
 
-          server:setup({
-            on_attach = on_attach()
-          })
+          server:setup(opts)
 
           vim.cmd [[ do User LspAttachBuffers ]]
         end)
