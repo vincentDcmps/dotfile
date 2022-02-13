@@ -170,25 +170,22 @@ return require('packer').startup {
         'hrsh7th/cmp-nvim-lsp',
         'hrsh7th/cmp-path',
         'hrsh7th/cmp-calc',
-
+        'hrsh7th/cmp-git',
 
         -- snippets
         'SirVer/ultisnips',
+        'honza/vim-snippets',
+        'quangnguyen30192/cmp-nvim-ultisnips',
+         config = function()
+           require("cmp_nvim_ultisnips").setup{}
+        end,
         -- pictograms
         'onsails/lspkind-nvim'
       },
       config= function()
-                local has_words_before = function()
-          local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-          return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
-        end
-
-        local feedkey = function(key, mode)
-          vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(key, true, true, true), mode, true)
-        end
 
         local cmp = require'cmp'
-
+        local cmp_ultisnips_mappings = require("cmp_nvim_ultisnips.mappings")
         cmp.setup {
           formatting = {
             format = require'lspkind'.cmp_format(),
@@ -196,10 +193,22 @@ return require('packer').startup {
           },
           snippet = {
             expand = function(args)
-              vim.fn["vsnip#anonymous"](args.body)
+              vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
             end,
           },
           mapping = {
+            ['<Tab>'] = cmp.mapping(
+            function(fallback)
+              cmp_ultisnips_mappings.expand_or_jump_forwards(fallback)
+            end,
+            { 'i', 's', 'c' }
+            ),
+            ['<S-Tab>'] = cmp.mapping(
+            function(fallback)
+              cmp_ultisnips_mappings.jump_backwards(fallback)
+            end,
+            { 'i', 's', 'c' }
+            ),
             ['<C-b>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
             ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
             ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
@@ -208,38 +217,31 @@ return require('packer').startup {
               i = cmp.mapping.abort(),
               c = cmp.mapping.close(),
             }),
-            ['<CR>'] = cmp.mapping.confirm({ select = true }),
-            ["<Tab>"] = cmp.mapping(function(fallback)
-              if cmp.visible() then
-                cmp.select_next_item()
-              elseif vim.fn["vsnip#available"](1) == 1 then
-                feedkey("<Plug>(vsnip-expand-or-jump)", "")
-              elseif has_words_before() then
-                cmp.complete()
-              else
-                fallback() -- The fallback function sends a already mapped key. In this case, it's probably `<Tab>`.
-              end
-            end, { "i", "s" }),
-            ["<S-Tab>"] = cmp.mapping(function()
-              if cmp.visible() then
-                cmp.select_prev_item()
-              elseif vim.fn["vsnip#jumpable"](-1) == 1 then
-                feedkey("<Plug>(vsnip-jump-prev)", "")
-              end
-            end, { "i", "s" }),
+            ['<CR>'] = cmp.mapping.confirm({ select = false }),
           },
           sources = cmp.config.sources(
             {
+              { name = 'path' },
+              { name = 'calc' },
               { name = 'nvim_lsp' },
-              { name = 'vsnip' },
+              { name = 'ultisnips' },
             },
             {
               { name = 'buffer' },
             }
           )
-        }
+          }
 
-        -- Use buffer source for `/`
+        -- Set configuration for specific filetype.
+        cmp.setup.filetype('gitcommit', {
+          sources = cmp.config.sources({
+            { name = 'cmp_git' }, -- You can specify the `cmp_git` source if you were installed it.
+          }, {
+            { name = 'buffer' },
+          })
+        })
+
+          -- Use buffer source for `/`
         cmp.setup.cmdline('/', {
           sources = {
             { name = 'buffer' }
