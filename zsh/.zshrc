@@ -57,7 +57,7 @@ ZSH_CUSTOM=$HOME/.oh-my-zsh-custom
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(archlinux common-aliases cp systemd colored-man-pages extract rsync history-substring-search nmap sudo systemadmin wakeonlan git zsh-256color tmux thefuck zsh-syntax-highlighting pip pyenv python docker fzf fzf-tab)
+plugins=(archlinux common-aliases cp systemd colored-man-pages extract rsync history-substring-search nmap sudo systemadmin wakeonlan git zsh-256color tmux thefuck zsh-syntax-highlighting pip pyenv python docker fzf fzf-tab kubectl)
 
 # User configuration
 # fzf-tab option
