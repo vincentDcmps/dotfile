@@ -91,7 +91,6 @@ return require('packer').startup {
           "pyright",
           "sqls",
           "yamlls",
-          "remark_ls",
         }
 
         require "nvim-lsp-installer.ui.status-win"().open()
