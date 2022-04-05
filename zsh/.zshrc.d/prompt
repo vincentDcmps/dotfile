@@ -5,7 +5,7 @@
 #. /usr/lib/python3.6/site-packages/powerline/bindings/zsh/powerline.zsh
 #fi
 ##set zsh theme et dircolor en fonction de term
-if [ $TERM != "linux" ];  then 
+if [ $TERM != "linux" ];  then
   POWERLEVEL9K_MODE="awesome-fontconfig"
     ZSH_THEME="powerlevel10k/powerlevel10k"
     eval `dircolors ~/.dircolors/dircolors.256dark`
@@ -13,14 +13,15 @@ if [ $TERM != "linux" ];  then
     POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status virtualenv root_indicator background_jobs history time)
 else
    ZSH_THEME="rkj-repos"
-    eval `dircolors ~/.dircolors/dircolors.ansi-dark` 
+    eval `dircolors ~/.dircolors/dircolors.ansi-dark`
 fi
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 
 #launch tmux on ssh connection
 
-if [[ -n "$PS1" ]] && [[ -z "$TMUX" ]] && [[ -n "$SSH_CONNECTION" ]]; then
-  tmux attach-session -t ssh_tmux || tmux new-session -s ssh_tmux
+##if [[ -n "$PS1" ]] && [[ -z "$TMUX" ]] && [[ -n "$SSH_CONNECTION" ]]; then
+if [[ -n "$PS1" ]] && [[ -z "$TMUX" ]]; then
+  tmux attach-session -t $(hostname) || tmux new-session -s $(hostname)
 fi
 
 
