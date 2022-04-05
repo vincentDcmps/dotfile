@@ -105,3 +105,8 @@ done
 source $ZSH/oh-my-zsh.sh
 
 source /home/vincent/.config/broot/launcher/bash/br
+
+autoload -U +X bashcompinit && bashcompinit
+if [ -x /usr/bin/nomad ]; then
+  complete -o nospace -C /usr/bin/nomad nomad
+fi
