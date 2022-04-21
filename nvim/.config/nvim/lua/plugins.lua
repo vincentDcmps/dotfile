@@ -144,7 +144,7 @@ return require('packer').startup {
             buf_set_keymap('n', '<space>=', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
           end
           local opts = {
-            on_attach=on_attach()
+            on_attach = on_attach
           }
           if enhance_server_opts[server.name] then
             -- Enhance the default opts with the server-specific ones
