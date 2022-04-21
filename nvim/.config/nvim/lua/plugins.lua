@@ -289,7 +289,6 @@ return require('packer').startup {
 		config = function()
 			vim.api.nvim_set_keymap("n", "<leader>t", "<cmd>NvimTreeToggle<cr>", {})
 			require("nvim-tree").setup({
-				auto_close = true,
 				update_focused_file = {
 					enable = true,
 				},
@@ -340,14 +339,14 @@ return require('packer').startup {
         fast_wrap= {},
       }
     end
-  })
+})
 
   use({
     'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate',
     config = function()
       require'nvim-treesitter.configs'.setup {
-        ensure_installed = "maintained",
+        ensure_installed = "all",
         highlight = {
           enable = true
         }
