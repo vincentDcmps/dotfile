@@ -88,3 +88,11 @@ function removeknowhost (){
         sed -i "/^$1/d" ~/.ssh/known_hosts
     fi
 }
+
+function tmux-bootstrap () {
+  tmux new-window
+  tmux new-window -n note nvim  ~/home/notes2
+  tmux new-window 'note'
+  tmux new-window 'ncmpcpp'
+  tmux select-window -t :1
+}
