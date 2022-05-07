@@ -1,0 +1,3 @@
+export NOMAD_ADDR="http://nomad.service.consul:4646"
+export VAULT_ADDR="http://active.vault.service.consul:8200/"
+export CONSUL_HTTP_ADDR="http://consul.service.consul:8500"
