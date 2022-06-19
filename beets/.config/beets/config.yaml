@@ -6,11 +6,11 @@
 #╚═════╝ ╚══════╝╚══════╝   ╚═╝   ╚══════╝
 
 directory: /mnt/diskstation/music
-library: ~/Sync/library.db
+library: ~/beet_db/library.db
 import:
   move: yes
   write: yes
-  log: ~/Sync/import.log
+  log: ~/beet_db/import.log
 
 paths:
   default: $albumartist/$album%aunique{}/$disc_and_track - $title
