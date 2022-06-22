@@ -52,3 +52,5 @@ font:
 
 window:
   decorations: "none"
+env:
+  TERM: xterm-256color
