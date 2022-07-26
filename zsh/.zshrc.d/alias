@@ -91,7 +91,7 @@ function removeknowhost (){
 
 function tmux-bootstrap () {
   tmux new-window
-  tmux new-window -n note nvim  ~/home/notes2
+  tmux new-window -n note nvim  ~/notes
   tmux new-window 'note'
   tmux new-window 'ncmpcpp'
   tmux select-window -t :1
