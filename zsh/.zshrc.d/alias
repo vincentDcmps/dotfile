@@ -67,6 +67,7 @@ alias _='sudo '
 
 #alias MPV o avoid gnome blank screen
 alias mpv='gnome-session-inhibit mpv'
+alias jellyfin-mpv-shim='gnome-session-inhibit jellyfin-mpv-shim'
 
 #alias sortie de tmux en session ssh
 
