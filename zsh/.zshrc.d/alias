@@ -9,7 +9,6 @@ alias vim='nvim'
 alias diskstation='cd /mnt/diskstation'
 alias media='cd /mnt/diskstation/media'
 alias mediatemp='cd /mnt/diskstation/media/download'
-alias incomplete='cd /mnt/diskstation/media/download/incomplete && ls'
 alias serie='cd /mnt/diskstation/media/serie'
 alias film='cd /mnt/diskstation/media/film'
 
