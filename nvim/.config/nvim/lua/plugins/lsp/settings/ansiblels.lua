@@ -1,0 +1,5 @@
+return{
+    filetype= {
+    "yaml.ansible"
+}
+}
