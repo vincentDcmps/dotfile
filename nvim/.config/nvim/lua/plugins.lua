@@ -144,7 +144,9 @@ return require('packer').startup {
                 require('plugins.gitsign')
             end
         }
-
+        use {
+            'RRethy/vim-illuminate',
+        }
 
         use {
             'TimUntersberger/neogit',
