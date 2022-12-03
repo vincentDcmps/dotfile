@@ -138,7 +138,11 @@ return require('packer').startup {
           require('plugins.which-key')
 		end,
 	})
-
+    use ({'nvim-lualine/lualine.nvim',
+      config=function ()
+        require('plugins.lualine')
+      end
+    })
 
   --use 'freitass/todo.txt-vim'
   use 'nvim-lua/plenary.nvim'
@@ -165,11 +169,6 @@ return require('packer').startup {
   })
 
 
-  use {'feline-nvim/feline.nvim',
-    config = function()
-      require('feline').setup({})
-    end
-  }
   if packer_bootstrap then
       require('packer').sync()
     end
