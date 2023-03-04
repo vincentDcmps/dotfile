@@ -7,6 +7,13 @@ require('plugins.lsp.mason')
 ---------------------
 --Global Varialbles--
 ---------------------
+--
+vim.filetype.add({
+  pattern = {
+    [".*/tasks/.*.ya?ml"] = "yaml.ansible",
+    [".*/ansible/.*.ya?ml"] = "yaml.ansible"
+  },
+})
 
 vim.g.airline_powerline_font = true
 vim.g.easyescape_chars = {
