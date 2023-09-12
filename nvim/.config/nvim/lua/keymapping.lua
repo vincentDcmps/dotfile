@@ -23,6 +23,7 @@ keymap('n', '<C-n>',':NvimTreeToggle<CR>', opts)
 keymap('n', '<leader>r',':NvimTreeRefresh<CR>', opts)
 keymap('n', '<leader>n',':NvimTreeFindFile<CR>', opts)
 keymap("n", "<leader>e", ":NvimTreeToggle<CR>", opts)
+
 -- Navigate buffers
 keymap("n", "<C-l>", ":bnext<CR>", opts)
 keymap("n", "<C-h>", ":bprevious<CR>", opts)
@@ -32,4 +33,3 @@ keymap("n", "<C-h>", ":bprevious<CR>", opts)
 --force sudo save
 keymap('c', 'w!!','w !sudo tee > /dev/null %', opts)
 
-require('plugins.markdown-preview')
