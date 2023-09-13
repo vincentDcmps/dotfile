@@ -8,7 +8,7 @@ end
 M.capabilities = vim.lsp.protocol.make_client_capabilities()
 M.capabilities.textDocument.completion.completionItem.snippetSupport = true
 M.capabilities = cmp_nvim_lsp.default_capabilities(M.capabilities)
-
+local navic = require("nvim-navic")
 M.setup = function()
     local signs = {
 
@@ -64,9 +64,6 @@ local function lsp_keymaps(bufnr)
     keymap(bufnr, "n", "<leader>li", "<cmd>LspInfo<cr>", opts)
 
     keymap(bufnr, "n", "<leader>lI", "<cmd>LspInstallInfo<cr>", opts)
-    keymap(bufnr, "n", "<leader>la", "<cmd>lua vim.lsp.buf.code_action()<cr>", opts)
-    keymap(bufnr, "n", "<leader>lj", "<cmd>lua vim.diagnostic.goto_next({buffer=0})<cr>", opts)
-    keymap(bufnr, "n", "<leader>lk", "<cmd>lua vim.diagnostic.goto_prev({buffer=0})<cr>", opts)
     keymap(bufnr, "n", "<leader>lr", "<cmd>lua vim.lsp.buf.rename()<cr>", opts)
     keymap(bufnr, "n", "<leader>ls", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
     keymap(bufnr, "n", "<leader>lq", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
@@ -76,7 +73,9 @@ M.on_attach = function(client, bufnr)
     if client.name == "tsserver" then
         client.server_capabilities.document_formatting = false
     end
-
+    if client.server_capabilities.documentSymbolProvider then
+        navic.attach(client, bufnr)
+    end
 
     lsp_keymaps(bufnr)
     local status_ok, illuminate = pcall(require, "illuminate")
