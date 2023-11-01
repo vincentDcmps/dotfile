@@ -12,12 +12,12 @@ return {
         "https://github.com/NeogitOrg/neogit",
         keys = {
             {
-                '<leader>gs',
+                '<leader>gn',
                 function()
-                    return require('neogit').open()
+                    return require('neogit').open({cwd = "%:p:h"})
                 end,
                 desc = 'Open neogit',
-            },
+            }
         },
 
         cmd = "Neogit",
