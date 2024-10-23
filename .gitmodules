@@ -28,3 +28,6 @@
 [submodule "nvim/.local/share/nvim/site/pack/packer/start/packer.nvim"]
 	path = nvim/.local/share/nvim/site/pack/packer/start/packer.nvim
 	url = https://github.com/wbthomason/packer.nvim
+[submodule "tmux/.config/tmux/plugins/tpm"]
+	path = tmux/.config/tmux/plugins/tpm
+	url = https://github.com/tmux-plugins/tpm

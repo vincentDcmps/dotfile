@@ -65,8 +65,8 @@ alias disconnect_momentum='bluetoothctl disconnect 00:1B:66:8E:46:27 && bluetoot
 alias _='sudo '
 
 #alias MPV o avoid gnome blank screen
-alias mpv='gnome-session-inhibit mpv'
-alias jellyfin-mpv-shim='gnome-session-inhibit jellyfin-mpv-shim'
+alias mpv='mpv'
+alias jellyfin-mpv-shim='jellyfin-mpv-shim'
 
 #alias sortie de tmux en session ssh
 
