@@ -61,7 +61,7 @@ mpd:
   port: 6600
 
 subsonic:
-  url: https://supysonic.ducamps.win
+  url: https://supysonic.ducamps.eu
   user: vincent
   pass: VLqRFQskz68xGjXUtjwnttax2
   auth: password
