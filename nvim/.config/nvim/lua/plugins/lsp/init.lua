@@ -24,7 +24,6 @@ return {
                 "sqlls",
                 "terraformls",
                 "tflint",
-                "tsserver",
                 "yamlls",
             }
             local settings = {
