@@ -1,3 +1,4 @@
 vim/.vim/.netrwhist
 nvim/.local/share/nvim/site/pack
 nvim/.config/nvim/plugin/packer_compiled.lua
+tmux/.config/tmux/plugins/
