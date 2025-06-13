@@ -96,3 +96,11 @@ function tmux-bootstrap () {
   tmux new-window 'ncmpcpp'
   tmux select-window -t :1
 }
+ssh() {
+    tmux set-option allow-rename off 1>/dev/null
+    tmux rename-window "ssh/$*"
+    command ssh "$@"
+    tmux set-option allow-rename on 1>/dev/null
+}
+
+
