@@ -33,9 +33,15 @@ alias df='df -h'
 alias rr='rm -r'
 alias rrf='rm -rf'
 #set commande filebot
-alias trieserie='filebot --format "/mnt/diskstation/media/serie/{n}/Saison {s}/{e.pad(2)}-{t}/{s.pad(2)}x{e.pad(2)}-{t}" --db thetvdb -non-strict --lang fr  -rename -no-xattr'
-alias triefilm='filebot --format "/mnt/diskstation/media/film/{n} ({y})/{n}" --db themoviedb --lang fr -rename -non-strict -no-xattr'
+if [ "$HOST" = oberon ];then
+  mediapath="/exports"
+else
+  mediapath="/mnt/diskstation"
+fi
+alias trieserie="filebot --format '${mediapath}/media/serie/{n}/Saison {s}/{e.pad(2)}-{t}/{s.pad(2)}x{e.pad(2)}-{t}' --db thetvdb -non-strict --lang fr  -rename -no-xattr"
+alias triefilm="filebot --format '${mediapath}/media/film/{n} ({y})/{n}' --db themoviedb --lang fr -rename -non-strict -no-xattr"
 alias cleaner='filebot -script fn:cleaner .'
+alias trierevert="filebot -revert --mode interactive"
 
 #synchro music directory for laptop
 alias update-music-folder='rsync-update /mnt/diskstation/music/ ~/Music/'
