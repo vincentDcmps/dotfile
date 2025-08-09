@@ -42,8 +42,6 @@ map("n", "]b", "<cmd>BufferLineCycleNext<cr>", { desc = "Next buffer" })
 map("n", "<leader>bb", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
 map("n", "<leader>`", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
 
--- Clear search with <esc>
-map({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "Escape and clear hlsearch" })
 -- Copy and paste with system clipboard
 
 keymap('v', '<C-c>', '"+y',    opts)
@@ -66,8 +64,6 @@ keymap("n", "<leader>e", ":NvimTreeToggle<CR>", opts)
 map("v", "<", "<gv")
 map("v", ">", ">gv")
 
-map("n", "<leader>xl", "<cmd>lopen<cr>", { desc = "Location List" })
-map("n", "<leader>xq", "<cmd>copen<cr>", { desc = "Quickfix List" })
 map("n", "[q", vim.cmd.cprev, { desc = "Previous quickfix" })
 map("n", "]q", vim.cmd.cnext, { desc = "Next quickfix" })
 --keymap('n', '<C-s>',':BufferLinePick<CR>', opts)
@@ -98,3 +94,11 @@ map("n", "<leader><tab><tab>", "<cmd>tabnew<cr>", { desc = "New Tab" })
 map("n", "<leader><tab>]", "<cmd>tabnext<cr>", { desc = "Next Tab" })
 map("n", "<leader><tab>d", "<cmd>tabclose<cr>", { desc = "Close Tab" })
 map("n", "<leader><tab>[", "<cmd>tabprevious<cr>", { desc = "Previous Tab" })
+
+map("n", "<Leader>sr", function()
+    require("grug-far").open({
+        prefills = {
+            paths = vim.fn.expand("%"),
+        },
+    })
+end)

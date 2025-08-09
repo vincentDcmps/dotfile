@@ -1,6 +1,4 @@
 return {
-    { 'RRethy/nvim-treesitter-endwise'
-    },
     {
         "https://github.com/nvim-treesitter/nvim-treesitter",
         event = { "BufReadPost", "BufNewFile" },
