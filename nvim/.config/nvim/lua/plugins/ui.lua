@@ -64,6 +64,7 @@ return {
     event = "VeryLazy",
     opts = {
       plugins = { spelling = true },
+      preset = "modern",
       defaults = {
         mode = { "n", "v" },
         { "<leader><tab>", group = "tabs" },

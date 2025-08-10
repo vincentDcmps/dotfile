@@ -27,6 +27,7 @@ return {
       scope = { enabled = true },
       scroll = { enabled = true },
       terminal = {enabled = true },
+      toggle = { map = vim.safe_keymap_set },
       statuscolumn = { enabled = true },
       words = { enabled = true },
     },
