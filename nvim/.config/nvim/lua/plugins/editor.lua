@@ -40,8 +40,16 @@ return {
       })
     end,
     keys = {
-      { "<Leader>/", "<Cmd>FzfLua grep_project<CR>", desc = "Live grep Project" },
-      { "<Leader>?", "<Cmd>FzfLua live_grep<CR>",    desc = "Live grep" },
+      { "<Leader>/",     "<Cmd>FzfLua live_grep<CR>",       desc = "Live grep" },
+      { "<leader>:",     "<cmd>FzfLua command_history<cr>", desc = "Command History" },
+      { "<leader><space>", "<cmd>FzfLua files<cr>",           desc = "find files" },
+      { "<leader>gc",    "<cmd>FzfLua git_commits<CR>",     desc = "Commits" },
+      { "<leader>gs",    "<cmd>FzfLua git_status<CR>",      desc = "Status" },
+      { '<leader>s"',    "<cmd>FzfLua registers<cr>",       desc = "Registers" },
+      { "<leader>sa",    "<cmd>FzfLua autocmds<cr>",        desc = "Auto Commands" },
+      { "<leader>sb",    "<cmd>FzfLua grep_curbuf<cr>",     desc = "Buffer" },
+      { "<leader>sc",    "<cmd>FzfLua command_history<cr>", desc = "Command History" },
+      { "<leader>sC",    "<cmd>FzfLua commands<cr>",        desc = "Commands" },
     }
   },
   {
