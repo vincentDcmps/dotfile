@@ -138,6 +138,9 @@ return {
       conform.setup({
         formatters_by_ft = {
           markdown = { "prettier" },
+          terraform = { "terraform_fmt"},
+          go = {"gofmt"},
+          nomad= {"nomad_fmt"}
         },
       })
       vim.keymap.set({ "n", "v" }, "<leader>lf", function()
