@@ -23,7 +23,10 @@ require('colorscheme')
 vim.filetype.add({
   pattern = {
     [".*/tasks/.*.ya?ml"] = "yaml.ansible",
-    [".*/ansible/.*.ya?ml"] = "yaml.ansible"
+    [".*/ansible/.*.ya?ml"] = "yaml.ansible",
+    [".*/.nomad.hcl"] = "nomad",
+    [".*.nomad"] = "nomad",
+
   },
 })
 

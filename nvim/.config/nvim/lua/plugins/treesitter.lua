@@ -40,7 +40,7 @@ return {
                     enable = true,
                 },
             })
-            vim.treesitter.language.register("nomad", "hcl")
+            vim.treesitter.language.register("hcl", "nomad")
         end,
     },
 
