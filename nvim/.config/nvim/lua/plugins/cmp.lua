@@ -24,8 +24,10 @@ return {
         default = { "lsp", "path", "snippets", "buffer" },
       },
       keymap = {
-        preset = "super-tab",
-
+        preset = 'default',
+        ["<tab>"] = { "select_next", "fallback" },
+        ["<s-tab>"] = { "select_prev", "fallback" },
+        ["<CR>"] = { "accept", "fallback" },
       },
     },
     event = "VeryLazy",
@@ -43,7 +45,7 @@ return {
       end
       -- Unset custom prop to pass blink.cmp validation
       opts.sources.compat = nil
-      require("blink.cmp").setup( opts )
+      require("blink.cmp").setup(opts)
     end,
   },
 }
