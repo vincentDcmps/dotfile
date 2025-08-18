@@ -27,6 +27,13 @@ alias diskstation-root='ssh root@diskstation -p 1020'
 #set command alias
 alias nano='nano -c'
 alias rarret='sudo systemctl poweroff --no-wall'
+function rarret (){
+  if [ -z "$SSH_CONNECTION" ]; then
+    sudo systemctl poweroff --no-wall
+  else
+    echo "you don't have to use this command on remote host"
+  fi
+}
 alias arret='systemctl poweroff --no-wall'
 alias du='du -h'
 alias df='df -h'
