@@ -115,4 +115,4 @@ ssh() {
     tmux set-option allow-rename on 1>/dev/null
 }
 
-
+alias actgitea='act -W .gitea/workflows'
