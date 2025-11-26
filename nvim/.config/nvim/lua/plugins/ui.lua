@@ -17,9 +17,9 @@ return {
       require("bufferline").setup({
         options = {
           -- stylua: ignore
-          close_command = function(n) require("mini.bufremove").delete(n, false) end,
+          close_command =  function(n) Snacks.bufdelete(n) end,
           -- stylu  a: ignore
-          right_mouse_command = function(n) require("mini.bufremove").delete(n, false) end,
+          right_mouse_command =  function(n) Snacks.bufdelete(n) end,
           always_show_bufferline = false,
           offsets = {
             {

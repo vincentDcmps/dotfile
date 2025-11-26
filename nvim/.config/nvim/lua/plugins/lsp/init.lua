@@ -51,16 +51,13 @@ return {
             }
             require("mason").setup(settings)
             require("mason-lspconfig").setup({
+                ensure_installed = servers,
                 automatic_installation = true,
             })
-            local lspconfig_status_ok, lspconfig = pcall(require, "lspconfig")
-            if not lspconfig_status_ok then
-                    return
-            end
             for  server, config in pairs(servers) do
-                config.on_attach = require("plugins.lsp.handlers").on_attach
-                config.capabilities = require("blink.cmp").get_lsp_capabilities(config.capabilities)
-                lspconfig[server].setup(config)
+                config.attach = require("plugins.lsp.handlers").on_attach
+                config.capabilities = require("blink.cmp").get_lsp_capabilities(capabilities)
+                vim.lsp.config(server,config)
             end
         end
     },
