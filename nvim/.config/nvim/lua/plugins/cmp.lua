@@ -23,11 +23,46 @@ return {
         compat = {},
         default = { "lsp", "path", "snippets", "buffer" },
       },
+      completion = {
+         accept = {
+        -- experimental auto-brackets support
+          auto_brackets = {
+            enabled = true,
+          },
+        },
+        menu = {
+          draw = {
+            treesitter = { "lsp" },
+          },
+        },
+        documentation = {
+          auto_show = true,
+          auto_show_delay_ms = 200,
+        },
+      },
+      cmdline = {
+        enabled = true,
+        keymap = {
+          preset = "cmdline",
+          ["<Right>"] = false,
+          ["<Left>"] = false,
+        },
+        completion = {
+          list = { selection = { preselect = false } },
+          menu = {
+            auto_show = function(ctx)
+              return vim.fn.getcmdtype() == ":"
+            end,
+          },
+          ghost_text = { enabled = true },
+        },
+      },
       keymap = {
         preset = 'default',
         ["<tab>"] = { "select_next", "fallback" },
         ["<s-tab>"] = { "select_prev", "fallback" },
         ["<CR>"] = { "accept", "fallback" },
+        ['<C-e>'] = { 'hide', 'fallback' },
       },
     },
     event = "VeryLazy",
