@@ -53,11 +53,14 @@ COMPLETION_WAITING_DOTS="true"
 # Would you like to use another custom folder than $ZSH/custom?
 ZSH_CUSTOM=$HOME/.oh-my-zsh-custom
 
+zstyle ':omz:plugins:eza' 'icons' yes
+zstyle ':omz:plugins:eza' 'header' yes
+
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(archlinux common-aliases cp systemd colored-man-pages extract rsync history-substring-search nmap sudo systemadmin wakeonlan git zsh-256color tmux thefuck zsh-syntax-highlighting pip pyenv python docker fzf fzf-tab kubectl zsh-autosuggestions zsh-you-should-use)
+plugins=(archlinux common-aliases cp systemd colored-man-pages extract rsync history-substring-search nmap sudo systemadmin wakeonlan git zsh-256color tmux thefuck zsh-syntax-highlighting pip pyenv python docker fzf fzf-tab kubectl zsh-autosuggestions zsh-you-should-use eza)
 
 # User configuration
 # fzf-tab option
@@ -99,10 +102,10 @@ if [[ ! -d $ZSH_CACHE_DIR ]]; then
   mkdir $ZSH_CACHE_DIR
 fi
 
+source $ZSH/oh-my-zsh.sh
 for file in ~/.zshrc.d/*; do
     source "$file"
 done
-source $ZSH/oh-my-zsh.sh
 
 source /home/vincent/.config/broot/launcher/bash/br
 

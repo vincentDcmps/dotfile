@@ -6,8 +6,7 @@
 #fi
 ##set zsh theme et dircolor en fonction de term
 if [ $TERM != "linux" ];  then
-  POWERLEVEL9K_MODE="awesome-fontconfig"
-    ZSH_THEME="powerlevel10k/powerlevel10k"
+    eval "$(starship init zsh)"
     eval `dircolors ~/.dircolors/dircolors.256dark`
     POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(ssh context dir rbenv vcs)
     POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status virtualenv root_indicator background_jobs history time)

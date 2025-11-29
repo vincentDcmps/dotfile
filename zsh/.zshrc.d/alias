@@ -116,3 +116,6 @@ ssh() {
 }
 
 alias actgitea='act -W .gitea/workflows'
+alias grep='rg'
+alias find='fd'
+alias l='ls -la'
