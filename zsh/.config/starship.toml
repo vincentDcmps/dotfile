@@ -31,7 +31,7 @@ palette = "solarized"
 
 [username]
 format = "[$user@]($style)"
-style_user = "bg:base03"
+style_user = "bg:base03 fg:yellow"
 
 
 [cmd_duration]
