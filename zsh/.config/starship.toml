@@ -5,32 +5,33 @@
 add_newline = true
 
 format = """\
-[](fg:blue)\
+[](fg:base03)\
 $os\
 $username$hostname\
-[](bg:peach fg:blue)\
+[](bg:blue fg:base03)\
 $directory\
-[](bg:yellow fg:peach)\
+[](bg:yellow fg:blue)\
 $git_branch\
 $git_status\
 $git_state\
 $git_metrics\
-$character\
-[](fg:blue)\
+[](fg:yellow)\
 """
 
 
 right_format = """\
+[](fg:base1)\
 $status\
+[](bg:base1 fg:base2)\
 $time\
 """
 
 
-palette = "catppuccin_mocha"
+palette = "solarized"
 
 [username]
-format = "[$user]($style)@"
-style_user = "bg:blue"
+format = "[$user@]($style)"
+style_user = "bg:base03"
 
 
 [cmd_duration]
@@ -44,7 +45,7 @@ format = '$symbol'
 [time]
 disabled = false
 time_format = "%R" # Hour:Minute Format
-format = '[[ 󱑍 $time ](bg:blue fg:text)]($style)'
+format = '[[ 󱑍 $time ](bg:base2 fg:base03)]($style)'
 
 
 # Disable the package module, hiding it from the prompt completely
@@ -83,8 +84,8 @@ symbol = " "
 
 [directory]
 read_only = " 󰌾"
-format = "[$path ]($style)"
-style = "fg:text bg:peach"
+format = "[ $path ]($style)"
+style = "fg:base03 bg:blue"
 
 [docker_context]
 symbol = " "
@@ -110,14 +111,14 @@ symbol = " "
 [git_branch]
 symbol = " "
 format = '[ $symbol$branch(:$remote_branch) ]($style)'
-style = "bold bg:yellow fg:red"
+style = "bold bg:yellow fg:base03"
 
 [git_commit]
 tag_symbol = '  '
 
 [git_status]
 format = '[$all_status ]($style)'
-style = "bg:yellow fg:red"
+style = "bg:yellow fg:base03"
 ahead = '⇡${count}'
 diverged = '⇕⇡${ahead_count}⇣${behind_count}'
 behind = '⇣${count}'
@@ -131,10 +132,10 @@ renamed = '👅'
 deleted = '🗑'
 
 [git_metrics]
-format = '[[($all_status$ahead_behind )](fg:red bg:yellow)]($style)'
+format = '[[($all_status$ahead_behind )](fg:base03 bg:yellow)]($style)'
 disabled = false
-added_style="bg:yellow fg:red"
-deleted_style="bg:yellow fg:red"
+added_style="bg:yellow fg:base03"
+deleted_style="bg:yellow fg:base03"
 
 [golang]
 symbol = " "
@@ -161,7 +162,7 @@ symbol = " "
 format = '[$ssh_symbol$hostname ]($style)'
 ssh_only = false
 ssh_symbol = " "
-style = "bg:blue fg:text"
+style = "bg:base03 fg:yellow"
 
 [java]
 symbol = " "
@@ -194,7 +195,7 @@ symbol = " "
 symbol = " "
 
 [os]
-style = "bg:blue fg:text"
+style = "bg:base03 fg:yellow"
 disabled=false
 [os.symbols]
 Alpaquita = " "
@@ -278,6 +279,8 @@ symbol = " "
 [status]
 symbol = " "
 disabled = false
+style = "bold fg:red bg:base1"
+format='[$symbol$status ]($style)'
 
 [swift]
 symbol = " "
@@ -288,30 +291,21 @@ symbol = " "
 [zig]
 symbol = " "
 
-[palettes.catppuccin_mocha]
-rosewater = "#dc8a78"
-flamingo = "#dd7878"
-pink = "#ea76cb"
-mauve = "#8839ef"
-red = "#d20f39"
-maroon = "#e64553"
-peach = "#fe640b"
-yellow = "#df8e1d"
-green = "#40a02b"
-teal = "#179299"
-sky = "#04a5e5"
-sapphire = "#209fb5"
-blue = "#1e66f5"
-lavender = "#7287fd"
-text = "#FFFFFF"
-subtext1 = "#5c5f77"
-subtext0 = "#6c6f85"
-overlay2 = "#7c7f93"
-overlay1 = "#8c8fa1"
-overlay0 = "#9ca0b0"
-surface2 = "#acb0be"
-surface1 = "#bcc0cc"
-surface0 = "#ccd0da"
-base = "#eff1f5"
-mantle = "#e6e9ef"
-crust = "#dce0e8"
+
+[palettes.solarized]
+yellow   =     "#b58900" 
+orange   =     "#cb4b16"
+red      =     "#dc322f"
+magenta  =     "#d33682"
+violet   =     "#6c71c4"
+blue     =     "#268bd2"
+cyan     =     "#2aa198"
+green    =     "#859900"
+base03   =     "#002b36"
+base02   =     "#073642"
+base01   =     "#586e75"
+base00   =     "#657b83"
+base0    =     "#839496"
+base1    =     "#93a1a1"
+base2    =     "#eee8d5"
+base3    =     "#fdf6e3"
