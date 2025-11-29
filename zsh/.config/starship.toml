@@ -84,8 +84,9 @@ symbol = " "
 
 [directory]
 read_only = " 󰌾"
-format = "[ $path ]($style)"
+format = "[ $path $read_only]($style)"
 style = "fg:base03 bg:blue"
+home_symbol = "󰋜"
 
 [docker_context]
 symbol = " "
@@ -159,9 +160,9 @@ symbol = " "
 
 [hostname]
 
-format = '[$ssh_symbol$hostname ]($style)'
+format = '[$hostname $ssh_symbol]($style)'
 ssh_only = false
-ssh_symbol = " "
+ssh_symbol = " "
 style = "bg:base03 fg:yellow"
 
 [java]
