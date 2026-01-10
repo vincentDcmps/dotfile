@@ -2,7 +2,7 @@
 {
     // "layer": "top", // Waybar at top layer
     // "position": "bottom", // Waybar position (top|bottom|left|right)
-    "height": 20, // Waybar height (to be removed for auto height)
+    "height": 31, // Waybar height (to be removed for auto height)
     // "width": 1280, // Waybar width
     "spacing": 4, // Gaps between modules (4px)
     // Choose the order of the modules
@@ -66,46 +66,14 @@
         "tooltip": true,
         "tooltip-format": "{app}: {title}"
     },
-//    "mpd": {
-//        "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ⸨{songPosition}|{queueLength}⸩ {volume}% ",
-//        "format-disconnected": "Disconnected ",
-//        "format-stopped": "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped ",
-//        "unknown-tag": "N/A",
-//        "interval": 5,
-//        "consume-icons": {
-//            "on": " "
-//        },
-//        "random-icons": {
-//            "off": "<span color=\"#f53c3c\"></span> ",
-//            "on": " "
-//        },
-//        "repeat-icons": {
-//            "on": " "
-//        },
-//        "single-icons": {
-//            "on": "1 "
-//        },
-//        "state-icons": {
-//            "paused": "",
-//            "playing": ""
-//        },
-//        "tooltip-format": "MPD (connected)",
-//        "tooltip-format-disconnected": "MPD (disconnected)"
-//    },
-//"custom/waybar-mpris": {
-//    "return-type": "json",
-//    "exec": "waybar-mpris --position --autofocus --pause \uf04d --play \uf04b",
-//    "on-click": "waybar-mpris --send toggle",
-//    // This option will switch between players on right click.
-//        "on-click-right": "waybar-mpris --send player-next",
-//    // The options below will switch the selected player on scroll
-//        // "on-scroll-up": "waybar-mpris --send player-next",
-//        // "on-scroll-down": "waybar-mpris --send player-prev",
-//    // The options below will go to next/previous track on scroll
-//        // "on-scroll-up": "waybar-mpris --send next",
-//        // "on-scroll-down": "waybar-mpris --send prev",
-//    "escape": true
-//},
+    "hyprland/window": {
+        "rewrite": {
+            "(.*) – Chromium": "$1"
+        },
+        "separate-outputs": true,
+        "icon": true,
+        "icon-size" :16
+    },
     "mpris": {
       "format": "{player_icon} {dynamic}",
       "format-paused": "{status_icon} <i>{dynamic}</i>",
@@ -156,11 +124,23 @@
         }
     },
     "cpu": {
-        "format": "{usage}% ",
-        "tooltip": false
+    "interval": 5,
+    "format": "{usage}% {icon0}{icon1}{icon2}{icon3}",
+     "format-icons": [
+          "<span color='#69ff94'>▁</span>", // green
+          "<span color='#2aa9ff'>▂</span>", // blue
+          "<span color='#f8f8f2'>▃</span>", // white
+          "<span color='#f8f8f2'>▄</span>", // white
+          "<span color='#ffffa5'>▅</span>", // yellow
+          "<span color='#ffffa5'>▆</span>", // yellow
+          "<span color='#ff9977'>▇</span>", // orange
+          "<span color='#dd532e'>█</span>"  // red
+     ],
+
+        "tooltip": true,
     },
     "memory": {
-        "format": "{}% "
+        "format": "{}% "
     },
     "temperature": {
         // "thermal-zone": 2,
@@ -208,7 +188,7 @@
         // "interface": "wlp2*", // (Optional) To force the use of this interface
         "interval": 5,
         "format-wifi": "{essid} ({signalStrength}%) ",
-        "format-ethernet": "\uf093 {bandwidthUpOctets} \uf019 {bandwidthDownOctets}",
+        "format-ethernet": " {bandwidthUpOctets} \uf093 {bandwidthDownOctets} \uf019",
         "tooltip-format": "{ifname} via {gwaddr} ",
         "format-linked": "{ifname} (No IP) ",
         "format-disconnected": "Disconnected ⚠",

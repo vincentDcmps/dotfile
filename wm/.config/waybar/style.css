@@ -1,11 +1,10 @@
 * {
     border: none;
     /* `ttf-font-awesome` is required to be installed for icons */
-    font-family: "Cascadia Code", Helvetica, Arial, sans-serif, FontAwesome;
+    font-family: "Cascadia Code", Helvetica, Arial, sans-serif, FontAwesome,"Noto Sans Mono";
 
     /* adjust font-size value to your liking: */
-    font-size: 13px;
-
+    font-size: 14px;
     min-height: 0;
 }
 
@@ -100,6 +99,8 @@ window#waybar.chromium {
 #window,
 #workspaces {
     margin: 0 4px;
+    margin-top: -49px;
+    margin-bottom: -49px;
 }
 
 /* If workspaces is the leftmost module, omit left margin */
