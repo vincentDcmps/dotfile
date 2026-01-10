@@ -56,11 +56,17 @@ ZSH_CUSTOM=$HOME/.oh-my-zsh-custom
 zstyle ':omz:plugins:eza' 'icons' yes
 zstyle ':omz:plugins:eza' 'header' yes
 
+
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(archlinux common-aliases cp systemd colored-man-pages extract rsync history-substring-search nmap sudo systemadmin wakeonlan git zsh-256color tmux thefuck zsh-syntax-highlighting pip pyenv python docker fzf fzf-tab kubectl zsh-autosuggestions zsh-you-should-use eza)
+plugins=(archlinux common-aliases cp systemd colored-man-pages extract rsync nmap sudo systemadmin wakeonlan git zsh-256color tmux thefuck zsh-syntax-highlighting pip pyenv python docker fzf fzf-tab kubectl zsh-autosuggestions zsh-you-should-use eza)
+
+export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_PREVIEW_COMMAND="bat --color=always --style=numbers --line-range=:500 {}"
+
 
 # User configuration
 # fzf-tab option
@@ -113,3 +119,4 @@ autoload -U +X bashcompinit && bashcompinit
 if [ -x /usr/bin/nomad ]; then
   complete -o nospace -C /usr/bin/nomad nomad
 fi
+
