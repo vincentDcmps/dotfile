@@ -8,8 +8,6 @@
 if [ $TERM != "linux" ];  then
     eval "$(starship init zsh)"
     eval `dircolors ~/.dircolors/dircolors.256dark`
-    POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(ssh context dir rbenv vcs)
-    POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status virtualenv root_indicator background_jobs history time)
 else
    ZSH_THEME="rkj-repos"
     eval `dircolors ~/.dircolors/dircolors.ansi-dark`
@@ -18,7 +16,6 @@ zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 
 #launch tmux on ssh connection
 
-##if [[ -n "$PS1" ]] && [[ -z "$TMUX" ]] && [[ -n "$SSH_CONNECTION" ]]; then
 if [[ -n "$PS1" ]] && [[ -z "$TMUX" ]]; then
   tmux new-session -t $(hostname) || tmux new-session -s $(hostname)
 fi

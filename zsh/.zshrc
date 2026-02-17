@@ -1,20 +1,7 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-
 zstyle :omz:plugins:ssh-agent agent-forwarding on
-#
 export SSH_KEY_PATH="~/.ssh/rsa_id"
-#If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
-
-# Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
-# Set name of the theme to load. Optionally, if you set this to "random"
-# it'll load a random theme each time that oh-my-zsh is loaded.
-# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-#ZSH_THEME="agnoster"
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 
@@ -57,11 +44,35 @@ zstyle ':omz:plugins:eza' 'icons' yes
 zstyle ':omz:plugins:eza' 'header' yes
 
 
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
-plugins=(archlinux common-aliases cp systemd colored-man-pages extract rsync nmap sudo systemadmin wakeonlan git zsh-256color tmux thefuck zsh-syntax-highlighting pip pyenv python docker fzf fzf-tab kubectl zsh-autosuggestions zsh-you-should-use eza)
+plugins=(
+  archlinux
+  common-aliases
+  cp
+  systemd
+  colored-man-pages
+  extract
+  rsync 
+  nmap 
+  sudo 
+  systemadmin 
+  wakeonlan 
+  git 
+  golang
+  zsh-256color 
+  tmux
+  thefuck 
+  zsh-syntax-highlighting 
+  pip
+  pyenv
+  python
+  docker
+  fzf
+  fzf-tab
+  kubectl
+  zsh-autosuggestions
+  zsh-you-should-use 
+  eza
+)
 
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
@@ -74,31 +85,12 @@ zstyle ':completion:*:git-checkout:*' sort false
 zstyle ':completion:*:git-diff:*' sort false
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*:descriptions' format '[%d]'
-# export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 
-# Preferred editor for local and remote sessions
- #if [[ -n $SSH_CONNECTION ]]; then
-   #export EDITOR='vim'
- #else
-#   export EDITOR='mvim'
-# fi
-
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
-
-# ssh
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
 
 #tmux config path
 ZSH_TMUX_CONFIG=$HOME/.config/tmux/tmux.conf
@@ -113,7 +105,6 @@ for file in ~/.zshrc.d/*; do
     source "$file"
 done
 
-source /home/vincent/.config/broot/launcher/bash/br
 
 autoload -U +X bashcompinit && bashcompinit
 if [ -x /usr/bin/nomad ]; then
