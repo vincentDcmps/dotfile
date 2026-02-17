@@ -35,7 +35,8 @@ return {
                   }
                 },
                 tflint = {},
-                yamlls = {}
+                yamlls = {},
+                copilot = { enabled = false},
             }
             local settings = {
                 ui = {

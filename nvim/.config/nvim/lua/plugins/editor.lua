@@ -40,16 +40,16 @@ return {
       })
     end,
     keys = {
-      { "<Leader>/",     "<Cmd>FzfLua live_grep<CR>",       desc = "Live grep" },
-      { "<leader>:",     "<cmd>FzfLua command_history<cr>", desc = "Command History" },
+      { "<Leader>/",       "<Cmd>FzfLua live_grep<CR>",       desc = "Live grep" },
+      { "<leader>:",       "<cmd>FzfLua command_history<cr>", desc = "Command History" },
       { "<leader><space>", "<cmd>FzfLua files<cr>",           desc = "find files" },
-      { "<leader>gc",    "<cmd>FzfLua git_commits<CR>",     desc = "Commits" },
-      { "<leader>gs",    "<cmd>FzfLua git_status<CR>",      desc = "Status" },
-      { '<leader>s"',    "<cmd>FzfLua registers<cr>",       desc = "Registers" },
-      { "<leader>sa",    "<cmd>FzfLua autocmds<cr>",        desc = "Auto Commands" },
-      { "<leader>sb",    "<cmd>FzfLua grep_curbuf<cr>",     desc = "Buffer" },
-      { "<leader>sc",    "<cmd>FzfLua command_history<cr>", desc = "Command History" },
-      { "<leader>sC",    "<cmd>FzfLua commands<cr>",        desc = "Commands" },
+      { "<leader>gc",      "<cmd>FzfLua git_commits<CR>",     desc = "Commits" },
+      { "<leader>gs",      "<cmd>FzfLua git_status<CR>",      desc = "Status" },
+      { '<leader>s"',      "<cmd>FzfLua registers<cr>",       desc = "Registers" },
+      { "<leader>sa",      "<cmd>FzfLua autocmds<cr>",        desc = "Auto Commands" },
+      { "<leader>sb",      "<cmd>FzfLua grep_curbuf<cr>",     desc = "Buffer" },
+      { "<leader>sc",      "<cmd>FzfLua command_history<cr>", desc = "Command History" },
+      { "<leader>sC",      "<cmd>FzfLua commands<cr>",        desc = "Commands" },
     }
   },
   {
@@ -138,9 +138,9 @@ return {
       conform.setup({
         formatters_by_ft = {
           markdown = { "prettier" },
-          terraform = { "terraform_fmt"},
-          go = {"gofmt"},
-          nomad= {"nomad_fmt"}
+          terraform = { "terraform_fmt" },
+          go = { "gofmt" },
+          nomad = { "nomad_fmt" }
         },
       })
       vim.keymap.set({ "n", "v" }, "<leader>lf", function()
@@ -152,5 +152,36 @@ return {
       end, { desc = "Format file or range (in visual mode)" })
     end,
   },
-  
+  {
+    "zbirenbaum/copilot.lua",
+    cmd = "Copilot",
+    build = ":Copilot auth",
+    event = "BufReadPost",
+    opts = {
+      suggestion = {
+        enabled = true,
+        auto_trigger = true,
+        keymap = {
+          accept = "<leader>p", -- handled by nvim-cmp / blink.cmp
+          next = "<M-]>",
+          prev = "<M-[>",
+        },
+      },
+      panel = { enabled = true },
+      filetypes = {
+        markdown = true,
+        help = true,
+      },
+    },
+  },
+  {
+    "CopilotC-Nvim/CopilotChat.nvim",
+    dependencies = {
+      { "nvim-lua/plenary.nvim", branch = "master" },
+    },
+    build = "make tiktoken",
+    opts = {
+      -- See Configuration section for options
+    },
+  }
 }
