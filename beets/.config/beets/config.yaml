@@ -17,8 +17,8 @@ paths:
   albumtype:classical: classical/$album%aunique{}/$track-$artist-$title
   albumtype:Soundtrack: soundtracks/$album%aunique{}/$track-$artist-$title
   albumartist:various artist: Compilations/$album%aunique{}/$track-$artist-$title
-  genre:classical: classical/$artist-$title
-  genre:Soundtrack: soundtracks/$artist-$title
+  genres:classical: classical/$artist-$title
+  genres:Soundtrack: soundtracks/$artist-$title
 
   singleton: $artist/$title
 
